@@ -19,6 +19,27 @@ public class Monticulo {
     
     
     public static void main(String[] args ){
+        
+        
+        Constructor cons =new Constructor(10);
+        cons.Insertar(10);
+        cons.Insertar(4);
+        cons.Insertar(15);
+        cons.Insertar(67);
+        cons.Insertar(24);
+        cons.Insertar(17);
+        cons.Insertar(5);
+        cons.Insertar(20);
+        cons.Insertar(30);
+        cons.verArreglo();
+        cons.verArbol();
+    }
+    
+    
+    
+   
+    
+    public void abrirArchivo(){
         JFileChooser fileChooser = new JFileChooser(); //JFileChooser ->abrir un cuadro de diálogo donde el usuario puede elegir un fichero a través del explorador de archivos de su equipo.
         JTextArea text = new JTextArea();
         text.setEditable(false); //el usuario no tiene permitido editar el contenido
@@ -39,21 +60,5 @@ public class Monticulo {
                 System.out.println("Archivo seleccionado: " + selectedFile.getAbsolutePath()); 
              }else {JOptionPane.showMessageDialog(null, "El archivo seleccionado no existe, o esta vacio", "Alerta", JOptionPane.ERROR_MESSAGE);}
         }
-        
-        
-
-        Constructor cons =new Constructor(10);
-        cons.Insertar(10);
-        cons.Insertar(4);
-        cons.Insertar(15);
-        cons.Insertar(67);
-        cons.Insertar(24);
-        cons.Insertar(17);
-        cons.Insertar(5);
-        cons.Insertar(20);
-        cons.Insertar(30);
-        cons.verArreglo();
-        cons.verArbol();
     }
-    
 }

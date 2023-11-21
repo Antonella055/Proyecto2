@@ -32,4 +32,24 @@ public class ArrayList<E>{
             throw new IndexOutOfBoundsException(); 
         }
         return (E) myData[index];
-    }}
+    }
+    
+    public boolean remove(  E data ) throws RuntimeException {
+       int index = -1;
+        for (int i = 0; i < actSize; i++) {
+            if (myData[i].equals(data)) {
+                index = i;
+                break;
+            }
+        }
+        if (index == -1) {
+            return false;
+        }
+        for (int i = index; i < actSize - 1; i++) {
+            myData[i] = myData[i + 1];
+        }
+        myData[actSize - 1] = null;
+        actSize--;
+        return true;
+    }
+}

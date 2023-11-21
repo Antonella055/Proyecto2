@@ -4,7 +4,10 @@
  */
 package MonticuloBinario;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
@@ -14,32 +17,46 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Antonella
  */
-public class Monticulo {
+public class Monticulo { //Abrir archivo y usar sus datos para la creacion del Monticulo
      public static File selectedFile; 
-    
-    
-    public static void main(String[] args ){
+
+    public static void main(String[] args) {
+        Constr_monticulo tree = new Constr_monticulo();
+        abrirArchivo();
+            try (BufferedReader br = new BufferedReader(new FileReader(selectedFile))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] data = line.split(",");
+                    String username = data[0];
+                    String prioridad = data[1];
+                    int nivelprioridad;
+                    switch (prioridad) {
+                    //asignarle un valor numerico dependiendo de la prioridad del usuario
+                        case "prioridad_baja":
+                            nivelprioridad = 1;
+                            break;
+                        case "prioridad_media":
+                            nivelprioridad = 2;
+                            break;
+                        case "prioridad_alta":
+                            nivelprioridad = 3;
+                            break;
+                        default:
+                            nivelprioridad = 0;
+                            break;
+                    }
+                    tree.raiz = tree.insertar(tree.raiz, username, nivelprioridad);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         
-        
-        Constructor cons =new Constructor(10);
-        cons.Insertar(10);
-        cons.Insertar(4);
-        cons.Insertar(15);
-        cons.Insertar(67);
-        cons.Insertar(24);
-        cons.Insertar(17);
-        cons.Insertar(5);
-        cons.Insertar(20);
-        cons.Insertar(30);
-        cons.verArreglo();
-        cons.verArbol();
+        tree.printMonticulo(tree.raiz, "", true);
     }
+
     
     
-    
-   
-    
-    public void abrirArchivo(){
+     public static void abrirArchivo(){
         JFileChooser fileChooser = new JFileChooser(); //JFileChooser ->abrir un cuadro de diálogo donde el usuario puede elegir un fichero a través del explorador de archivos de su equipo.
         JTextArea text = new JTextArea();
         text.setEditable(false); //el usuario no tiene permitido editar el contenido
@@ -58,7 +75,13 @@ public class Monticulo {
             
             if (selectedFile.length() !=0 && selectedFile.exists()){ //validar que exista y que contenga informacion
                 System.out.println("Archivo seleccionado: " + selectedFile.getAbsolutePath()); 
+                
+               
              }else {JOptionPane.showMessageDialog(null, "El archivo seleccionado no existe, o esta vacio", "Alerta", JOptionPane.ERROR_MESSAGE);}
         }
     }
-}
+     
+     }
+     
+      
+

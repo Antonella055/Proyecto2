@@ -4,7 +4,12 @@
  */
 package interfaces;
 
+import interfaces.GestionDoc.Documentos;
+import interfaces.Usuario.Usuarios;
 import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
@@ -12,22 +17,14 @@ import javax.swing.JPanel;
  * @author Antonella
  */
 public class Menu extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Menu
      */
     public Menu() {
          initComponents();
-        menuframe = new JPanel();
-        
-        Barra barra= new Barra();
-        
-        menuframe.setLayout(new BorderLayout());
-        menuframe.add(barra);
-        
-        add(menuframe);
-        menuframe.setVisible(true);
-        setVisible(true);
+         
+         new CronometroInter().setVisible(true);
         
     }
 
@@ -39,15 +36,13 @@ public class Menu extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         panel1 = new java.awt.Panel();
-        menu = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jToolBar1 = new javax.swing.JToolBar();
-        menuframe = new javax.swing.JPanel();
+        menu = new FondoPanel();
+        documentos = new javax.swing.JButton();
+        usuarios = new javax.swing.JButton();
+        colaimpresion = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -64,48 +59,80 @@ public class Menu extends javax.swing.JFrame {
 
         menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Documentos");
-        menu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 146, 44));
+        documentos.setBackground(new java.awt.Color(204, 204, 255));
+        documentos.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
+        documentos.setForeground(new java.awt.Color(102, 102, 102));
+        documentos.setText("Documentos");
+        documentos.setBorderPainted(false);
+        documentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                documentosActionPerformed(evt);
+            }
+        });
+        menu.add(documentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 280, 50));
 
-        jButton2.setText("Usuarios");
-        menu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 146, 44));
+        usuarios.setBackground(new java.awt.Color(204, 204, 255));
+        usuarios.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
+        usuarios.setForeground(new java.awt.Color(102, 102, 102));
+        usuarios.setText("Usuarios");
+        usuarios.setBorderPainted(false);
+        usuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuariosActionPerformed(evt);
+            }
+        });
+        menu.add(usuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 280, 50));
 
-        jButton3.setText("Monticulo Binario");
-        menu.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 146, 44));
+        colaimpresion.setBackground(new java.awt.Color(204, 204, 255));
+        colaimpresion.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
+        colaimpresion.setForeground(new java.awt.Color(102, 102, 102));
+        colaimpresion.setText("Monticulo Binario");
+        colaimpresion.setBorderPainted(false);
+        colaimpresion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                colaimpresionActionPerformed(evt);
+            }
+        });
+        menu.add(colaimpresion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 280, 50));
 
-        jToolBar1.setRollover(true);
-
-        javax.swing.GroupLayout menuframeLayout = new javax.swing.GroupLayout(menuframe);
-        menuframe.setLayout(menuframeLayout);
-        menuframeLayout.setHorizontalGroup(
-            menuframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 434, Short.MAX_VALUE)
-        );
-        menuframeLayout.setVerticalGroup(
-            menuframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 60, Short.MAX_VALUE)
-        );
+        jLabel1.setFont(new java.awt.Font("Vineta BT", 0, 18)); // NOI18N
+        jLabel1.setText("Menu");
+        menu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(menuframe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(menuframe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void usuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuariosActionPerformed
+        // TODO add your handling code here:
+        new Usuarios().setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_usuariosActionPerformed
+
+    private void documentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_documentosActionPerformed
+        // TODO add your handling code here:
+        new Documentos().setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_documentosActionPerformed
+
+    private void colaimpresionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colaimpresionActionPerformed
+        // TODO add your handling code here:
+        new ColaImpresion().setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_colaimpresionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,16 +166,28 @@ public class Menu extends javax.swing.JFrame {
             public void run() {
                 new Menu().setVisible(true);
             }
-        });
+       });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JButton colaimpresion;
+    private javax.swing.JButton documentos;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel menu;
-    private javax.swing.JPanel menuframe;
     private java.awt.Panel panel1;
+    private javax.swing.JButton usuarios;
     // End of variables declaration//GEN-END:variables
-}
+
+   
+    class FondoPanel extends JPanel{
+        private Image imagen;
+        
+        @Override
+        public void paint(Graphics g){
+            imagen= new ImageIcon(getClass().getResource("/imagenes/fondo.jpg")).getImage();
+            g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
+                    setOpaque(false);
+                    
+                    super.paint(g);
+        }
+    }}

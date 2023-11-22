@@ -6,7 +6,6 @@ package interfaces;
 
 import interfaces.GestionDoc.Documentos;
 import interfaces.Usuario.Usuarios;
-import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -24,7 +23,9 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
          initComponents();
          
-         new CronometroInter().setVisible(true);
+         CronometroInter cronomet=new CronometroInter();
+         cronomet.setVisible(true);
+         cronomet.StartReloj();
         
     }
 

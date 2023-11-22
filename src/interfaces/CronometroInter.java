@@ -5,7 +5,12 @@
 package interfaces;
 
 import Estructuras.Cronometro;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 /**
@@ -13,15 +18,62 @@ import javax.swing.Timer;
  * @author Antonella
  */
 public class CronometroInter extends javax.swing.JFrame {
-   private Cronometro cronometro ;
+   public String tiempoUsuario;
+   private Timer tiempo;
+   private int miliseg=0;
+   private int segundos=0;
+   private int minutos=0;
+   private int horas=0;
+   
+   
+    private ActionListener acciones= new ActionListener(){
+        @Override
+        public void actionPerformed(ActionEvent e){
+           miliseg ++;
+           
+           if (miliseg ==100){
+               segundos++;
+               miliseg=0;
+               
+           }if(segundos==60){
+               minutos++;
+               segundos=0;
+               
+           }if(minutos==60){
+               horas++;
+               minutos=0;
+               
+           }if(horas==24){
+               horas=0;
+           }
+           actualizarEtiqueta();
+        }
+                
+                
+                };
+   
+    public void StartReloj(){
+        tiempo.start();
+    }
+    public void StopReloj(){
+        tiempo.stop();
+        tiempoUsuario = String.format("%02d:%02d:%02d:%02d", horas, minutos, segundos, miliseg);
+    }
+    
+    
+   
+   private void actualizarEtiqueta(){
+       String texto= (horas<=9?"0":"")+horas+":"+(minutos<=9?"0":"")+minutos+":"+(segundos<=9?"0":"")+segundos+":"+(miliseg <=9?"0":"")+miliseg;
+       etiquetatiempo.setText(texto);
+   }
+   
+   
    
         public CronometroInter() {
         initComponents();
-        
-          cronometro = new Cronometro();
-            cronometro.iniciar();
-            cronometrolabelComponentAdded(null);
+        tiempo= new Timer(10,acciones);
     }
+       
        
 
     /**
@@ -34,77 +86,73 @@ public class CronometroInter extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        cronometrolabel = new javax.swing.JLabel();
+        Fondo = new Fondo();
+        jLabel2 = new javax.swing.JLabel();
+        etiquetatiempo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Rockwell Extra Bold", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Cronometro");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 67, -1, 27));
 
-        cronometrolabel.setFont(new java.awt.Font("Bauhaus 93", 1, 24)); // NOI18N
-        cronometrolabel.setText("00:00:00:00");
-        cronometrolabel.addContainerListener(new java.awt.event.ContainerAdapter() {
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reloj.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+
+        etiquetatiempo.setBackground(new java.awt.Color(102, 0, 102));
+        etiquetatiempo.setFont(new java.awt.Font("BankGothic Md BT", 1, 24)); // NOI18N
+        etiquetatiempo.setForeground(new java.awt.Color(255, 255, 255));
+        etiquetatiempo.setText("00:00:00:00");
+        etiquetatiempo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        etiquetatiempo.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
-                cronometrolabelComponentAdded(evt);
+                etiquetatiempoComponentAdded(evt);
             }
         });
-        cronometrolabel.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        etiquetatiempo.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                cronometrolabelPropertyChange(evt);
+                etiquetatiempoPropertyChange(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
-                .addComponent(cronometrolabel, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+        javax.swing.GroupLayout FondoLayout = new javax.swing.GroupLayout(Fondo);
+        Fondo.setLayout(FondoLayout);
+        FondoLayout.setHorizontalGroup(
+            FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FondoLayout.createSequentialGroup()
+                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FondoLayout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(FondoLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(etiquetatiempo)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(cronometrolabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+        FondoLayout.setVerticalGroup(
+            FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(etiquetatiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
+
+        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 170));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cronometrolabelPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cronometrolabelPropertyChange
+    private void etiquetatiempoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_etiquetatiempoPropertyChange
         // TODO add your handling code here:
-    }//GEN-LAST:event_cronometrolabelPropertyChange
+    }//GEN-LAST:event_etiquetatiempoPropertyChange
 
-    private void cronometrolabelComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_cronometrolabelComponentAdded
-        // TODO add your handling code here:
-        
-        Thread hilo= new Thread(() ->{
-             while (true){
-                int minutos = cronometro.obtenerMinutos();
-                int segundos = cronometro.obtenerSegundos();
-                int milisegundos = cronometro.obtenerMilisegundos(); 
-                String tiempo = String.format("%02d:%02d:%03d", minutos, segundos, milisegundos);
-                cronometrolabel.setText(tiempo);
-         
-            try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            
-            }
-         });
-        hilo.start();
-    }//GEN-LAST:event_cronometrolabelComponentAdded
+    private void etiquetatiempoComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_etiquetatiempoComponentAdded
+
+    }//GEN-LAST:event_etiquetatiempoComponentAdded
 
     
     
@@ -138,13 +186,28 @@ public class CronometroInter extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CronometroInter().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel cronometrolabel;
+    private javax.swing.JPanel Fondo;
+    private javax.swing.JLabel etiquetatiempo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
+class Fondo extends JPanel{
+        private Image imagen;
+        
+        @Override
+        public void paint(Graphics g){
+            imagen= new ImageIcon(getClass().getResource("/imagenes/fondocron.jpg")).getImage();
+            g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
+                    setOpaque(false);
+                    
+                    super.paint(g);
+        }
+    }
+
 }

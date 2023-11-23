@@ -184,7 +184,7 @@ public class Usuarios extends javax.swing.JFrame {
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        new Menu().setVisible(true);
+        
     }//GEN-LAST:event_volverActionPerformed
 
     /**

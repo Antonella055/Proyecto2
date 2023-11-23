@@ -4,11 +4,14 @@
  */
 package interfaces;
 
+import MonticuloBinario.Monticulo;
 import interfaces.GestionDoc.Documentos;
+import interfaces.GestionDoc.RegistroUsr;
 import interfaces.Usuario.Usuarios;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -16,7 +19,7 @@ import javax.swing.JPanel;
  * @author Antonella
  */
 public class Menu extends javax.swing.JFrame {
-    
+    boolean archivoSeleccionado=false;
     /**
      * Creates new form Menu
      */
@@ -27,6 +30,10 @@ public class Menu extends javax.swing.JFrame {
          cronomet.setVisible(true);
          cronomet.StartReloj();
         
+         usuarios.setEnabled(false);
+         documentos.setEnabled(false);
+         colaimpresion.setEnabled(false);
+         
     }
 
     /**
@@ -44,6 +51,7 @@ public class Menu extends javax.swing.JFrame {
         usuarios = new javax.swing.JButton();
         colaimpresion = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        SeleccionarArchivo = new javax.swing.JButton();
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -65,6 +73,11 @@ public class Menu extends javax.swing.JFrame {
         documentos.setForeground(new java.awt.Color(102, 102, 102));
         documentos.setText("Documentos");
         documentos.setBorderPainted(false);
+        documentos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                documentosMouseClicked(evt);
+            }
+        });
         documentos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 documentosActionPerformed(evt);
@@ -77,6 +90,11 @@ public class Menu extends javax.swing.JFrame {
         usuarios.setForeground(new java.awt.Color(102, 102, 102));
         usuarios.setText("Usuarios");
         usuarios.setBorderPainted(false);
+        usuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                usuariosMouseClicked(evt);
+            }
+        });
         usuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usuariosActionPerformed(evt);
@@ -89,6 +107,11 @@ public class Menu extends javax.swing.JFrame {
         colaimpresion.setForeground(new java.awt.Color(102, 102, 102));
         colaimpresion.setText("Monticulo Binario");
         colaimpresion.setBorderPainted(false);
+        colaimpresion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                colaimpresionMouseClicked(evt);
+            }
+        });
         colaimpresion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 colaimpresionActionPerformed(evt);
@@ -99,6 +122,16 @@ public class Menu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Vineta BT", 0, 18)); // NOI18N
         jLabel1.setText("Menu");
         menu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
+
+        SeleccionarArchivo.setBackground(new java.awt.Color(102, 102, 102));
+        SeleccionarArchivo.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        SeleccionarArchivo.setText("Seleccionar Archivo");
+        SeleccionarArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SeleccionarArchivoActionPerformed(evt);
+            }
+        });
+        menu.add(SeleccionarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,21 +152,60 @@ public class Menu extends javax.swing.JFrame {
 
     private void usuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuariosActionPerformed
         // TODO add your handling code here:
+        
         new Usuarios().setVisible(true);
-        setVisible(false);
+        
     }//GEN-LAST:event_usuariosActionPerformed
 
     private void documentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_documentosActionPerformed
         // TODO add your handling code here:
-        new Documentos().setVisible(true);
-        setVisible(false);
+       new RegistroUsr().setVisible(true);
+        
+        
     }//GEN-LAST:event_documentosActionPerformed
 
     private void colaimpresionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colaimpresionActionPerformed
         // TODO add your handling code here:
+        
         new ColaImpresion().setVisible(true);
-        setVisible(false);
+       
     }//GEN-LAST:event_colaimpresionActionPerformed
+
+    private void SeleccionarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarArchivoActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+        new Monticulo().abrirArchivo();
+        archivoSeleccionado=true;
+        
+        usuarios.setEnabled(true);
+         documentos.setEnabled(true);
+         colaimpresion.setEnabled(true);
+    }//GEN-LAST:event_SeleccionarArchivoActionPerformed
+
+    private void usuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuariosMouseClicked
+        // TODO add your handling code here:
+        if (!usuarios.isEnabled()){
+            JOptionPane.showMessageDialog(null,"Para comenzar porfavor seleccione un archivo", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_usuariosMouseClicked
+
+    private void documentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_documentosMouseClicked
+        // TODO add your handling code here:
+        if (!documentos.isEnabled()){
+            JOptionPane.showMessageDialog(null,"Para comenzar porfavor seleccione un archivo", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_documentosMouseClicked
+
+    private void colaimpresionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colaimpresionMouseClicked
+        // TODO add your handling code here:
+        if (!colaimpresion.isEnabled()){
+            JOptionPane.showMessageDialog(null,"Para comenzar porfavor seleccione un archivo", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_colaimpresionMouseClicked
 
     /**
      * @param args the command line arguments
@@ -171,6 +243,7 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton SeleccionarArchivo;
     private javax.swing.JButton colaimpresion;
     private javax.swing.JButton documentos;
     private javax.swing.JLabel jLabel1;

@@ -4,6 +4,8 @@
  */
 package interfaces.GestionDoc;
 
+import interfaces.Usuario.BuscarUsuario;
+
 /**
  *
  * @author Antonella
@@ -31,7 +33,7 @@ public class ImprimirDocumento extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        buscador = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -52,13 +54,13 @@ public class ImprimirDocumento extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Yellow"));
-        jButton4.setForeground(new java.awt.Color(204, 153, 0));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa2.0.png"))); // NOI18N
-        jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        buscador.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Yellow"));
+        buscador.setForeground(new java.awt.Color(204, 153, 0));
+        buscador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa2.0.png"))); // NOI18N
+        buscador.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        buscador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                buscadorActionPerformed(evt);
             }
         });
 
@@ -83,7 +85,7 @@ public class ImprimirDocumento extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(buscador)
                 .addGap(61, 61, 61))
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
@@ -113,7 +115,7 @@ public class ImprimirDocumento extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton4))
+                    .addComponent(buscador))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -125,9 +127,13 @@ public class ImprimirDocumento extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void buscadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscadorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        BuscarUsuario buscador= new BuscarUsuario();
+        buscador.mostrarselecc();
+        buscador.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_buscadorActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         // TODO add your handling code here:
@@ -172,9 +178,9 @@ public class ImprimirDocumento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buscador;
     private javax.swing.JButton cancelar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

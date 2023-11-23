@@ -4,8 +4,12 @@
  */
 package interfaces.Usuario;
 
+import Usuario.Usuario;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -14,6 +18,8 @@ import javax.swing.JPanel;
  * @author Antonella
  */
 public class AgregarUsuario extends javax.swing.JFrame {
+    public String nombre;
+    public String tipo;
 
     /**
      * Creates new form AgregarUsuario
@@ -34,11 +40,12 @@ public class AgregarUsuario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        NombreUsuario = new javax.swing.JTextField();
         Fondo = new Fondo();
-        volver = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        volver = new javax.swing.JButton();
+        agregar = new javax.swing.JButton();
+        PrioridadUsuario = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -53,19 +60,12 @@ public class AgregarUsuario extends javax.swing.JFrame {
         jLabel3.setText("Nombre:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 115, -1, -1));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        NombreUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                NombreUsuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 110, 235, -1));
-
-        volver.setText("Volver");
-        volver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                volverActionPerformed(evt);
-            }
-        });
+        getContentPane().add(NombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 110, 235, -1));
 
         buscar.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Yellow"));
         buscar.setForeground(new java.awt.Color(204, 153, 0));
@@ -77,7 +77,27 @@ public class AgregarUsuario extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Agregar");
+        volver.setText("Volver");
+        volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverActionPerformed(evt);
+            }
+        });
+
+        agregar.setText("Agregar");
+        agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarActionPerformed(evt);
+            }
+        });
+
+        PrioridadUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "Prioridad Alta", "Prioridad Media", "Prioridad Baja" }));
+        PrioridadUsuario.setToolTipText("");
+        PrioridadUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PrioridadUsuarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout FondoLayout = new javax.swing.GroupLayout(Fondo);
         Fondo.setLayout(FondoLayout);
@@ -85,33 +105,42 @@ public class AgregarUsuario extends javax.swing.JFrame {
             FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FondoLayout.createSequentialGroup()
                 .addGap(342, 342, 342)
-                .addComponent(buscar))
-            .addGroup(FondoLayout.createSequentialGroup()
-                .addGap(263, 263, 263)
-                .addComponent(volver)
-                .addGap(6, 6, 6)
-                .addComponent(jButton2))
+                .addComponent(buscar)
+                .addContainerGap(62, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(volver, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(PrioridadUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(agregar)
+                .addGap(12, 12, 12))
         );
         FondoLayout.setVerticalGroup(
             FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FondoLayout.createSequentialGroup()
                 .addGap(109, 109, 109)
                 .addComponent(buscar)
-                .addGap(39, 39, 39)
-                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(22, 106, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PrioridadUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(volver)
-                    .addComponent(jButton2)))
+                    .addComponent(agregar))
+                .addContainerGap())
         );
 
-        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 210));
+        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 240));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void NombreUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_NombreUsuarioActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
@@ -126,6 +155,21 @@ public class AgregarUsuario extends javax.swing.JFrame {
           setVisible(false);
         new Usuarios().setVisible(true);
     }//GEN-LAST:event_volverActionPerformed
+
+    private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
+        // TODO add your handling code here:
+        nombre= NombreUsuario.getText();
+        tipo= PrioridadUsuario.getSelectedItem().toString();
+        try {
+            new Usuario().AgregarUsuario(nombre, tipo);
+        } catch (IOException ex) {
+            Logger.getLogger(AgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_agregarActionPerformed
+
+    private void PrioridadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrioridadUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PrioridadUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,12 +208,13 @@ public class AgregarUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Fondo;
+    private javax.swing.JTextField NombreUsuario;
+    private javax.swing.JComboBox<String> PrioridadUsuario;
+    private javax.swing.JButton agregar;
     private javax.swing.JButton buscar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 

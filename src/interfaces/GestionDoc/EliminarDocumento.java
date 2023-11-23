@@ -4,6 +4,8 @@
  */
 package interfaces.GestionDoc;
 
+import interfaces.Usuario.BuscarUsuario;
+
 /**
  *
  * @author Antonella
@@ -32,7 +34,7 @@ public class EliminarDocumento extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        buscar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -64,13 +66,13 @@ public class EliminarDocumento extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Yellow"));
-        jButton4.setForeground(new java.awt.Color(204, 153, 0));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa2.0.png"))); // NOI18N
-        jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        buscar.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Yellow"));
+        buscar.setForeground(new java.awt.Color(204, 153, 0));
+        buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa2.0.png"))); // NOI18N
+        buscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                buscarActionPerformed(evt);
             }
         });
 
@@ -112,7 +114,7 @@ public class EliminarDocumento extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(buscar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -131,7 +133,7 @@ public class EliminarDocumento extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton4))
+                    .addComponent(buscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -147,9 +149,13 @@ public class EliminarDocumento extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        BuscarUsuario buscador= new BuscarUsuario();
+        buscador.mostrarselecc();
+        buscador.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_buscarActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         // TODO add your handling code here
@@ -194,10 +200,10 @@ public class EliminarDocumento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buscar;
     private javax.swing.JButton cancelar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

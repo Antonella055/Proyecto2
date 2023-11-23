@@ -22,7 +22,7 @@ public class Monticulo { //Abrir archivo y usar sus datos para la creacion del M
 
     public static void main(String[] args) {
         Constr_monticulo tree = new Constr_monticulo();
-        abrirArchivo();
+   
             try (BufferedReader br = new BufferedReader(new FileReader(selectedFile))) {
                 String line;
                 while ((line = br.readLine()) != null) {
@@ -56,7 +56,7 @@ public class Monticulo { //Abrir archivo y usar sus datos para la creacion del M
 
     
     
-     public static void abrirArchivo(){
+     public void abrirArchivo(){
         JFileChooser fileChooser = new JFileChooser(); //JFileChooser ->abrir un cuadro de diálogo donde el usuario puede elegir un fichero a través del explorador de archivos de su equipo.
         JTextArea text = new JTextArea();
         text.setEditable(false); //el usuario no tiene permitido editar el contenido
@@ -80,6 +80,7 @@ public class Monticulo { //Abrir archivo y usar sus datos para la creacion del M
              }else {JOptionPane.showMessageDialog(null, "El archivo seleccionado no existe, o esta vacio", "Alerta", JOptionPane.ERROR_MESSAGE);}
         }
     }
+     
       public static String AñadirDocumento(String Usuario){
         String user = (String)JOptionPane.showInputDialog( "Introduzca los datos del documento bajo propiedad de "+Usuario + " con el siguiente formato(Nombre, tamaño, tipo) ");
         String[] lista = user.split(",");

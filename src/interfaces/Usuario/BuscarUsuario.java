@@ -6,9 +6,13 @@ package interfaces.Usuario;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -20,9 +24,17 @@ public class BuscarUsuario extends javax.swing.JFrame {
     /**
      * Creates new form BuscarUsuario
      */
+    
     public BuscarUsuario() {
         initComponents();
         seleccionar.setVisible(false);
+        
+        String[] documentos={"Proyecto3.pdf","Fotos.jpg","Notasmate.csv"};
+        JComboBox jcb= new JComboBox(documentos);
+        TableColumn tc=Tblist.getColumnModel().getColumn(2);
+        TableCellEditor tce= new DefaultCellEditor(jcb);
+        tc.setCellEditor(tce);
+        
     }
     
     public void mostrarselecc(){
@@ -85,20 +97,14 @@ public class BuscarUsuario extends javax.swing.JFrame {
 
         Tblist.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Juan_senior", "Prioridad baja", "Proyecto.Doc", "00:15:30:23"},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {"Juan_senior", "Prioridad baja", "Proyecto.Doc"}
             },
             new String [] {
-                "Usuario", "Tipo", "Documentos", "Tiempo"
+                "Usuario", "Tipo", "Documentos"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -140,6 +146,12 @@ public class BuscarUsuario extends javax.swing.JFrame {
                 seleccionarActionPerformed(evt);
             }
         });
+
+        usuariotxt.setEditable(false);
+        usuariotxt.setEnabled(false);
+
+        documentotxt.setEditable(false);
+        documentotxt.setEnabled(false);
 
         jLabel2.setText("Nombre:");
 
@@ -208,6 +220,7 @@ public class BuscarUsuario extends javax.swing.JFrame {
     private void TblistMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblistMousePressed
         // TODO add your handling code here:
         int filaseleccionada= this.Tblist.getSelectedRow();
+        
         
         try{
             this.usuariotxt.setText(Tblist.getValueAt(filaseleccionada,0).toString());

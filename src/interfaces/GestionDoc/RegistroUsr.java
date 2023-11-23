@@ -38,10 +38,11 @@ public class RegistroUsr extends javax.swing.JFrame {
         Fondo = new Fondo();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        RegistroUser = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         volver = new javax.swing.JButton();
+        continuar = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -69,7 +70,13 @@ public class RegistroUsr extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Lucida Fax", 0, 12)); // NOI18N
         jLabel4.setText("nombre de usuario");
         Fondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
-        Fondo.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 271, -1));
+
+        RegistroUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistroUserActionPerformed(evt);
+            }
+        });
+        Fondo.add(RegistroUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 271, -1));
 
         jLabel1.setText("Nombre:");
         Fondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
@@ -85,9 +92,21 @@ public class RegistroUsr extends javax.swing.JFrame {
         });
         Fondo.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 380));
+        continuar.setBackground(new java.awt.Color(204, 255, 255));
+        continuar.setFont(new java.awt.Font("ISOCT_IV50", 1, 12)); // NOI18N
+        continuar.setForeground(new java.awt.Color(102, 102, 102));
+        continuar.setText("Continuar");
+        continuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                continuarActionPerformed(evt);
+            }
+        });
+        Fondo.add(continuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, -1, -1));
+
+        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 380));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
@@ -95,6 +114,16 @@ public class RegistroUsr extends javax.swing.JFrame {
         setVisible(false);
         new Menu().setVisible(true);
     }//GEN-LAST:event_volverActionPerformed
+
+    private void continuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuarActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        new Documentos().setVisible(true);
+    }//GEN-LAST:event_continuarActionPerformed
+
+    private void RegistroUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RegistroUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,12 +163,13 @@ public class RegistroUsr extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Fondo;
+    private javax.swing.JTextField RegistroUser;
+    private javax.swing.JButton continuar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 class Fondo extends JPanel{
@@ -147,7 +177,7 @@ class Fondo extends JPanel{
         
         @Override
         public void paint(Graphics g){
-            imagen= new ImageIcon(getClass().getResource("/imagenes/fondoRegistro.jpg")).getImage();
+            imagen= new ImageIcon(getClass().getResource("/imagenes/fondo2.jpg")).getImage();
             g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
                     setOpaque(false);
                     

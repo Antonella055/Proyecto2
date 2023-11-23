@@ -4,19 +4,32 @@
  */
 package Usuario;
 
+import Estructuras.ArrayList;
+
 /**
  *
  * @author Antonella
  */
 public class Documento {
     private String nombre;
-    private int tamano;
+    private String tamano;
     private String tipo;
+    private String prioridad;
+    public ArrayList<ArrayList<Documento>> listaGeneral;
 
-    public Documento(String nombre, int tamano, String tipo) {
+    public Documento(String nombre, String tamano, String tipo) {
         this.nombre = nombre;
         this.tamano = tamano;
         this.tipo = tipo;
+        this.listaGeneral= new ArrayList<>();
+        
     }
+    
+   
+
+    
+    
+    
+    
     
 }

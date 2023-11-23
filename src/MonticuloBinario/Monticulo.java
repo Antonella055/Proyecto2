@@ -80,8 +80,46 @@ public class Monticulo { //Abrir archivo y usar sus datos para la creacion del M
              }else {JOptionPane.showMessageDialog(null, "El archivo seleccionado no existe, o esta vacio", "Alerta", JOptionPane.ERROR_MESSAGE);}
         }
     }
+      public static String AñadirDocumento(String Usuario){
+        String user = (String)JOptionPane.showInputDialog( "Introduzca los datos del documento bajo propiedad de "+Usuario + " con el siguiente formato(Nombre, tamaño, tipo) ");
+        String[] lista = user.split(",");
+        
+        int count = user.length() - user.replace(",", "").length(); //Contar el numero de comas para que valide 
+        
+        if (user == "end") {
+            System.out.println("Existoso");
+                
+                }
+        else if(count == 2 && isInteger(lista[1])){
+            String Documento ="Propietario: "+ Usuario + "\n"
+                            + "Nombre: " + lista[0]+ "\n"+
+                              "Tamaño: " + lista[1]+"\n"
+                             +"Tipo: "+lista[2];
+            System.out.println("Exito");
+         
+        return Documento;
+    }
+        else{
+            System.out.println("Error");
+            AñadirDocumento(Usuario);
+        }
+         return null;
+        
+    }
+        public static boolean isInteger(String s) { //Determinar si es int
+            try {
+                Integer.parseInt(s);
+                return true;
+            } catch (NumberFormatException e) {
+                return false;
+            }
+        }
+}
+
      
-     }
+     
+     
+     
      
       
 

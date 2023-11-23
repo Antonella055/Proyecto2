@@ -5,34 +5,28 @@
 package Usuario;
 
 import Estructuras.ArrayList;
+import interfaces.GestionDoc.CrearDocumento;
 
 /**
  *
  * @author Antonella
  */
 public class Usuario {
-    private String nombreUsuario;
-    private ArrayList<Documento> documentos;
-
-    public Usuario(String nombreUsuario, ArrayList<Documento> documentos) {
-        this.nombreUsuario = nombreUsuario;
-        this.documentos = new ArrayList<>();
-    }
+    
     
     //Crear documento
-    public void crearDocumento(Documento nombre, Documento tamaño, Documento tipo){
-    }
-    
-    //agregar a los documentos del usuario
-    public void agregarDoc(Documento documento){
+    public void crearDocumento(String nombre, String tamaño, String tipo){
+        CrearDocumento doc= new CrearDocumento();
+        ArrayList<Documento> documentos= new ArrayList<>();
+        
+        
+        
+        Documento documento= new Documento(nombre,tamaño,tipo);
         documentos.add(documento);
-    }
-    
-    public ArrayList <Documento> getDocumentos(){
-        return documentos;
-    }
-    
-    public void eliminarDocumento(Documento documento){
-        documentos.remove(documento);
+        documento.listaGeneral.add(documentos);
+        System.out.println (documento.listaGeneral);
+        
     }
 }
+    
+   

@@ -7,6 +7,7 @@ package interfaces.Usuario;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -14,7 +15,8 @@ import javax.swing.JPanel;
  * @author Antonella
  */
 public class BuscarUsuario extends javax.swing.JFrame {
-
+    private String usuario;
+    
     /**
      * Creates new form BuscarUsuario
      */
@@ -36,26 +38,23 @@ public class BuscarUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        seleccionar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         volver = new javax.swing.JButton();
         jInternalFrame1 = new javax.swing.JInternalFrame();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Tblist = new javax.swing.JTable();
         Fondo = new Fondo();
+        seleccionar = new javax.swing.JButton();
+        usuariotxt = new javax.swing.JTextField();
+        documentotxt = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        prioridadtxt = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        seleccionar.setBackground(new java.awt.Color(51, 102, 0));
-        seleccionar.setText("Seleccionar");
-        seleccionar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, new java.awt.Color(0, 153, 51), java.awt.Color.black, new java.awt.Color(204, 255, 204), new java.awt.Color(51, 102, 0)));
-        seleccionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seleccionarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(seleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(552, 61, 136, 37));
 
         jLabel1.setFont(new java.awt.Font("BankGothic Md BT", 1, 18)); // NOI18N
         jLabel1.setText("Registro de Usuarios");
@@ -71,54 +70,123 @@ public class BuscarUsuario extends javax.swing.JFrame {
 
         jInternalFrame1.setVisible(true);
 
-        jScrollPane2.setAutoscrolls(true);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nombre", "Tipo", "Documentos"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.setColumnSelectionAllowed(true);
-        jScrollPane2.setViewportView(jTable1);
-        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(jTable2);
+
+        Tblist.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"Juan_senior", "Prioridad baja", "Proyecto.Doc", "00:15:30:23"},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Usuario", "Tipo", "Documentos", "Tiempo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Tblist.setColumnSelectionAllowed(true);
+        Tblist.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TblistMousePressed(evt);
+            }
+        });
+        jScrollPane3.setViewportView(Tblist);
+        Tblist.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         getContentPane().add(jInternalFrame1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        seleccionar.setBackground(new java.awt.Color(51, 102, 0));
+        seleccionar.setText("Seleccionar");
+        seleccionar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, new java.awt.Color(0, 153, 51), java.awt.Color.black, new java.awt.Color(204, 255, 204), new java.awt.Color(51, 102, 0)));
+        seleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seleccionarActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Nombre:");
+
+        jLabel3.setText("Documento:");
+
+        prioridadtxt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Prioridad alta", "Prioridad media", "Prioridad baja" }));
+        prioridadtxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prioridadtxtActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout FondoLayout = new javax.swing.GroupLayout(Fondo);
         Fondo.setLayout(FondoLayout);
         FondoLayout.setHorizontalGroup(
             FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
+            .addGroup(FondoLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(prioridadtxt, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(FondoLayout.createSequentialGroup()
+                        .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(usuariotxt, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                            .addComponent(seleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(documentotxt))))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         FondoLayout.setVerticalGroup(
             FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 410, Short.MAX_VALUE)
+            .addGroup(FondoLayout.createSequentialGroup()
+                .addGap(102, 102, 102)
+                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(usuariotxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(documentotxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(14, 14, 14)
+                .addComponent(prioridadtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(seleccionar)
+                .addGap(147, 147, 147))
         );
 
         getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 0, 310, 410));
@@ -136,6 +204,24 @@ public class BuscarUsuario extends javax.swing.JFrame {
           setVisible(false);
         new Usuarios().setVisible(true);
     }//GEN-LAST:event_volverActionPerformed
+
+    private void TblistMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblistMousePressed
+        // TODO add your handling code here:
+        int filaseleccionada= this.Tblist.getSelectedRow();
+        
+        try{
+            this.usuariotxt.setText(Tblist.getValueAt(filaseleccionada,0).toString());
+             this.documentotxt.setText(Tblist.getValueAt(filaseleccionada,2).toString());
+             this.prioridadtxt.setSelectedItem(Tblist.getValueAt(filaseleccionada,1).toString());
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Error al leer la tabla","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_TblistMousePressed
+
+    private void prioridadtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prioridadtxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prioridadtxtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,11 +260,18 @@ public class BuscarUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Fondo;
+    private javax.swing.JTable Tblist;
+    private javax.swing.JTextField documentotxt;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JComboBox<String> prioridadtxt;
     private javax.swing.JButton seleccionar;
+    private javax.swing.JTextField usuariotxt;
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 

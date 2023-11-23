@@ -117,8 +117,14 @@ public class RegistroUsr extends javax.swing.JFrame {
 
     private void continuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuarActionPerformed
         // TODO add your handling code here:
+        
+        if(RegistroUser.getText().isEmpty()){
+            continuar.setEnabled(false);
+        }else{
+        
+        
         setVisible(false);
-        new Documentos().setVisible(true);
+        new Documentos().setVisible(true);}
     }//GEN-LAST:event_continuarActionPerformed
 
     private void RegistroUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroUserActionPerformed

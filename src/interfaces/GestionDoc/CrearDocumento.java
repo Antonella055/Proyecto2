@@ -41,13 +41,13 @@ public class CrearDocumento extends javax.swing.JFrame {
         docnombre = new javax.swing.JTextField();
         doctamano = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        crearDocumento = new javax.swing.JButton();
-        cancelar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         doctipo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jPanel1 = new Fondo();
+        cancelar = new javax.swing.JButton();
+        crearDocumento = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -66,22 +66,6 @@ public class CrearDocumento extends javax.swing.JFrame {
         jLabel3.setText("Para crear un nuevo Documento por favor indique los siguientes datos");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 65, 443, -1));
 
-        crearDocumento.setText("Crear");
-        crearDocumento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crearDocumentoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(crearDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 232, -1, -1));
-
-        cancelar.setText("Cancelar");
-        cancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 232, -1, -1));
-
         jLabel4.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 18)); // NOI18N
         jLabel4.setText("Crear");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 6, -1, 41));
@@ -94,18 +78,42 @@ public class CrearDocumento extends javax.swing.JFrame {
         jLabel6.setText("Tipo:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 195, -1, -1));
 
+        cancelar.setText("Cancelar");
+        cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarActionPerformed(evt);
+            }
+        });
+
+        crearDocumento.setText("Crear");
+        crearDocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearDocumentoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(345, Short.MAX_VALUE)
+                .addComponent(cancelar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(crearDocumento)
+                .addGap(13, 13, 13))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 270, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(267, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelar)
+                    .addComponent(crearDocumento))
+                .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 270));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 300));
 
         pack();
         setLocationRelativeTo(null);

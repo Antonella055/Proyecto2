@@ -7,49 +7,67 @@ package Estructuras;
 /**
  *
  * @author luciano
+ * @param <E>
  */
-import java.util.Arrays;
 
 public class ArrayList<E>{
-    private final int DEFAULT_SIZE=2;
-    private Object[] myData = new Object[DEFAULT_SIZE];
-    private int actSize=0;
+    private Object[] elementos;
+    private int size;
+    private static final int CAPACIDAD_INICIAL = 10;
 
-    public boolean add(E data){
-        if (actSize>=myData.length/2){
+    public ArrayList(Object[] elementos, int size) {
+        this.elementos = new Object[CAPACIDAD_INICIAL];
+        this.size = size;
+    }
+
+    public boolean add(E elemento){
+        if (size == elementos.length) {
             increaseSize();
         }
-        myData[actSize++] = data;
-        return true;
-    }
-
-    private void increaseSize()throws RuntimeException{
-        myData = Arrays.copyOf(myData, myData.length*2);
-    }
-
-    public E get(int index) throws RuntimeException{
-        if (index >= actSize){
-            throw new IndexOutOfBoundsException(); 
-        }
-        return (E) myData[index];
+        elementos[size] = elemento;
+        size++;
+        return false;
     }
     
-    public boolean remove(  E data ) throws RuntimeException {
-       int index = -1;
-        for (int i = 0; i < actSize; i++) {
-            if (myData[i].equals(data)) {
-                index = i;
+    
+    private void increaseSize()throws RuntimeException{
+        int nuevaCapacidad= elementos.length*2;
+        Object[] nuevoarray= new Object[nuevaCapacidad];
+        for (int i=0; i< size; i++){
+            nuevoarray[i]=elementos[i];
+        }
+        elementos= nuevoarray;
+    }
+
+    public E get(int indice ) throws RuntimeException{
+        if (indice < 0 || indice >= size) {
+            throw new IndexOutOfBoundsException("Índice fuera de rango");
+        }
+        return (E) elementos[indice];
+    }
+    
+    
+    public boolean remove(  E elemento ) throws RuntimeException {
+       int indice = -1;
+        for (int i = 0; i < size; i++) {
+            if (elementos[i].equals(elemento)) {
+                indice = i;
                 break;
             }
         }
-        if (index == -1) {
-            return false;
-        }
-        for (int i = index; i < actSize - 1; i++) {
-            myData[i] = myData[i + 1];
-        }
-        myData[actSize - 1] = null;
-        actSize--;
-        return true;
+        if (indice != -1) {
+            for (int i = indice; i < size - 1; i++) {
+                elementos[i] = elementos[i + 1];
+            }
+            elementos[size - 1] = null;
+            size--;
+     
     }
+        return false;
+    
+    }
+    public int size() {
+    return size;
 }
+}
+

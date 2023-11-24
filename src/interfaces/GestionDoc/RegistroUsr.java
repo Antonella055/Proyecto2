@@ -22,8 +22,9 @@ import javax.swing.JPanel;
  * @author Antonella
  */
 public class RegistroUsr extends javax.swing.JFrame {
-        public static  ArrayList<Object> usuarioDocumento;
+        public static  ArrayList<Object> usuarioData;
         public static String UsuarioName;
+        public static  ArrayList<Object> ListaDocumentos = new ArrayList<>();
     /**
      * Creates new form RegistroUsr
      */
@@ -138,6 +139,8 @@ public class RegistroUsr extends javax.swing.JFrame {
                 new Documentos().setVisible(true);}
             //    usuarioDocumento.add(RegistroUser.getText());
                 UsuarioName = RegistroUser.getText();
+                usuarioData = new ArrayList<>();
+                usuarioData.add(UsuarioName);
                 System.out.println(UsuarioName);
         } catch (IOException ex) {
             Logger.getLogger(RegistroUsr.class.getName()).log(Level.SEVERE, null, ex);

@@ -11,6 +11,7 @@ import Usuario.Usuario;
 import interfaces.CronometroInter;
 import static interfaces.GestionDoc.RegistroUsr.UsuarioName;
 import static Estructuras.ArrayList.VerArrayDoble;
+import static interfaces.GestionDoc.RegistroUsr.usuarioData;
 
 /**
  *
@@ -167,14 +168,14 @@ public class CrearDocumento extends javax.swing.JFrame {
         String tiempo = new CronometroInter().StopReloj();
         ArrayList<String>  Prueba = new ArrayList<>();
         ArrayList<Object> list = new ArrayList<>();
-        ArrayList<Object> almacenamiento = new ArrayList<>();
+        
         
         Prueba.add(nombredoc);
         Prueba.add(tamanodoc);
         Prueba.add(tipodoc);
         Prueba.add(tiempo);
-        list.add(UsuarioName);
-        list.add(Prueba);
+        
+        
         
         
          System.out.println("Documento creado:");
@@ -182,10 +183,10 @@ public class CrearDocumento extends javax.swing.JFrame {
                 System.out.println("Tamaño: " + tamanodoc);
                 System.out.println("Tipo: " + tipodoc);
                 System.out.println("Tiempo: " + tiempo);
-    almacenamiento.add(list);    
-    VerArrayDoble(list);
-    System.out.println(almacenamiento.size()); //Para ver el almacenamiento.
-    VerElemenEspecifico(list,0);
+    usuarioData.add(Prueba);    
+    VerArrayDoble(usuarioData);
+    System.out.println(usuarioData.size()); //Para ver el almacenamiento.
+    
     
     
     System.out.println(list);

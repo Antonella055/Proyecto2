@@ -10,24 +10,31 @@ package Estructuras;
  */
 // Java program to design HashMap
 
-import java.util.*;
+
  
 class MyHashMap {
     int[] mapArray;
-    public MyHashMap()
-    {
+
+    public MyHashMap() {
         mapArray = new int[1000001];
-        Arrays.fill(mapArray, -1);
+        fillArray(mapArray, -1);
     }
- 
-    public void put(int key, int value)
-    {
+
+    private void fillArray(int[] array, int value) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = value;
+        }
+    }
+
+    public void put(int key, int value) {
         mapArray[key] = value;
     }
- 
-    public int get(int key) { 
-        return mapArray[key]; }
- 
+
+    public int get(int key) {
+        return mapArray[key];
+    }
+
     public void remove(int key) {
-        mapArray[key] = -1; }
+        mapArray[key] = -1;
+    }
 }

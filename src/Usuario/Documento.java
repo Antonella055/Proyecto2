@@ -23,7 +23,7 @@ public class Documento {
         this.tamano = tamano;
         this.tipo = tipo;
         this.tiempo = tiempo;
-        this.listaGeneral= new ArrayList<>();
+        this.listaGeneral= new ArrayList<>(new Object[0], 0);
         
     }
     

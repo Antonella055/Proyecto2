@@ -166,8 +166,8 @@ public class CrearDocumento extends javax.swing.JFrame {
          tamanodoc=doctamano.getText();
         tipodoc= doctipo.getText();
         String tiempo = new CronometroInter().StopReloj();
-        ArrayList<String>  Prueba = new ArrayList<>();
-        ArrayList<Object> list = new ArrayList<>();
+        ArrayList<String>  Prueba = new ArrayList<>(new Object[0], 0);
+        ArrayList<Object> list = new ArrayList<>(new Object[0], 0);
         
         
         Prueba.add(nombredoc);

@@ -24,8 +24,8 @@ public class Usuario {
     //Crear documento
     public void crearDocumento(String nombre, String tamaño, String tipo, String tiempo){
         CrearDocumento doc= new CrearDocumento();
-        ArrayList<Documento> documentos= new ArrayList<>();
-        ArrayList<Object>  Prueba = new ArrayList<>();
+        ArrayList<Documento> documentos= new ArrayList<>(new Object[0], 0);
+        ArrayList<Object>  Prueba = new ArrayList<>(new Object[0], 0);
         
         
         Documento documento= new Documento(nombre,tamaño,tipo, tiempo);

@@ -166,9 +166,6 @@ public class Documentos extends javax.swing.JFrame {
         ListaDocumentos.add(usuarioData);
         VerArrayDoble(ListaDocumentos);
             
-        
-        
-        
     }//GEN-LAST:event_volverActionPerformed
 
     /**
@@ -231,7 +228,5 @@ public class Documentos extends javax.swing.JFrame {
                     super.paint(g);
         }
     }
-
-
 
 }

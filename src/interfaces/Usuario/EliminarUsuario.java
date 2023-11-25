@@ -4,8 +4,13 @@
  */
 package interfaces.Usuario;
 
+import Usuario.Usuario;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -14,7 +19,7 @@ import javax.swing.JPanel;
  * @author Antonella
  */
 public class EliminarUsuario extends javax.swing.JFrame {
-
+    public String usuarioEliminado;
     /**
      * Creates new form AgregarUsuario
      */
@@ -34,11 +39,11 @@ public class EliminarUsuario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        usuario = new javax.swing.JTextField();
         Fondo = new Fondo();
         volver = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        eliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -53,12 +58,12 @@ public class EliminarUsuario extends javax.swing.JFrame {
         jLabel3.setText("Nombre:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 115, -1, -1));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                usuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 110, 235, -1));
+        getContentPane().add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 110, 235, -1));
 
         volver.setText("Volver");
         volver.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +82,12 @@ public class EliminarUsuario extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Eliminar");
+        eliminar.setText("Eliminar");
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout FondoLayout = new javax.swing.GroupLayout(Fondo);
         Fondo.setLayout(FondoLayout);
@@ -89,7 +99,7 @@ public class EliminarUsuario extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoLayout.createSequentialGroup()
                         .addComponent(volver)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
+                        .addComponent(eliminar)
                         .addGap(16, 16, 16))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoLayout.createSequentialGroup()
                         .addComponent(buscar)
@@ -103,7 +113,7 @@ public class EliminarUsuario extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(volver)
-                    .addComponent(jButton2))
+                    .addComponent(eliminar))
                 .addGap(19, 19, 19))
         );
 
@@ -113,9 +123,9 @@ public class EliminarUsuario extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_usuarioActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
@@ -130,6 +140,20 @@ public class EliminarUsuario extends javax.swing.JFrame {
         setVisible(false);
         new Usuarios().setVisible(true);
     }//GEN-LAST:event_volverActionPerformed
+
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+        try {
+            // TODO add your handling code here:
+            
+            usuarioEliminado=usuario.getText();
+            new Usuario().EliminarUsuario(usuarioEliminado);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(EliminarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(EliminarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_eliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,11 +194,11 @@ public class EliminarUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Fondo;
     private javax.swing.JButton buscar;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton eliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField usuario;
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 

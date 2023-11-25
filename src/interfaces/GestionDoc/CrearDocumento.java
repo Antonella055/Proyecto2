@@ -9,9 +9,18 @@ import static Estructuras.ArrayList.VerElemenEspecifico;
 import Usuario.Documento;
 import Usuario.Usuario;
 import interfaces.CronometroInter;
-import static interfaces.GestionDoc.RegistroUsr.UsuarioName;
+
 import static Estructuras.ArrayList.VerArrayDoble;
+import static interfaces.GestionDoc.RegistroUsr.UsuarioName;
 import static interfaces.GestionDoc.RegistroUsr.usuarioData;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 /**
  *
@@ -22,6 +31,7 @@ public class CrearDocumento extends javax.swing.JFrame {
     public String tamanodoc;
     public String  tipodoc;
     public ArrayList array;
+  
 
     /**
      * Creates new form CrearDocumento
@@ -45,30 +55,56 @@ public class CrearDocumento extends javax.swing.JFrame {
         docnombre = new javax.swing.JTextField();
         doctamano = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        crearDocumento = new javax.swing.JButton();
-        cancelar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         doctipo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jPanel1 = new Fondo();
+        cancelar = new javax.swing.JButton();
+        crearDocumento = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Eras Demi ITC", 0, 12)); // NOI18N
         jLabel1.setText("Nombre:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 107, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Eras Demi ITC", 0, 12)); // NOI18N
         jLabel2.setText("Tamaño:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 151, -1, -1));
+
+        docnombre.setForeground(new java.awt.Color(153, 153, 153));
+        docnombre.setToolTipText("");
+        docnombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                docnombreActionPerformed(evt);
+            }
+        });
+        getContentPane().add(docnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 100, 260, -1));
+
+        doctamano.setForeground(new java.awt.Color(153, 153, 153));
+        doctamano.setText("60bytes...");
+        getContentPane().add(doctamano, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 144, 259, -1));
 
         jLabel3.setFont(new java.awt.Font("Mongolian Baiti", 1, 14)); // NOI18N
         jLabel3.setText("Para crear un nuevo Documento por favor indique los siguientes datos");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 65, 443, -1));
 
-        crearDocumento.setText("Crear");
-        crearDocumento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crearDocumentoActionPerformed(evt);
-            }
-        });
+        jLabel4.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 18)); // NOI18N
+        jLabel4.setText("Crear");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 6, -1, 41));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/archivo.png"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 17, 37, -1));
+
+        doctipo.setForeground(new java.awt.Color(153, 153, 153));
+        doctipo.setText("pdf,png...");
+        getContentPane().add(doctipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 188, 237, -1));
+
+        jLabel6.setFont(new java.awt.Font("Eras Demi ITC", 0, 12)); // NOI18N
+        jLabel6.setText("Tipo:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 195, -1, -1));
 
         cancelar.setText("Cancelar");
         cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -77,78 +113,35 @@ public class CrearDocumento extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 18)); // NOI18N
-        jLabel4.setText("Crear");
+        crearDocumento.setText("Crear");
+        crearDocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearDocumentoActionPerformed(evt);
+            }
+        });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/archivo.png"))); // NOI18N
-
-        jLabel6.setFont(new java.awt.Font("Eras Demi ITC", 0, 12)); // NOI18N
-        jLabel6.setText("Tipo:");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(345, Short.MAX_VALUE)
                 .addComponent(cancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(crearDocumento)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(docnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(doctipo, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(doctamano, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(13, 13, 13))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(docnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(doctamano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(doctipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(crearDocumento)
-                    .addComponent(cancelar))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(267, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelar)
+                    .addComponent(crearDocumento))
                 .addContainerGap())
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 300));
 
         pack();
         setLocationRelativeTo(null);
@@ -165,37 +158,22 @@ public class CrearDocumento extends javax.swing.JFrame {
         nombredoc= docnombre.getText();
          tamanodoc=doctamano.getText();
         tipodoc= doctipo.getText();
-        String tiempo = new CronometroInter().StopReloj();
-        ArrayList<String>  Prueba = new ArrayList<>(new Object[0], 0);
-        ArrayList<Object> list = new ArrayList<>(new Object[0], 0);
+           
+       Usuario user = new Usuario();
+       
+        try {
+            user.CrearDocumento(UsuarioName,nombredoc, tamanodoc, tipodoc);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CrearDocumento.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CrearDocumento.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        
-        Prueba.add(nombredoc);
-        Prueba.add(tamanodoc);
-        Prueba.add(tipodoc);
-        Prueba.add(tiempo);
-        
-        
-        
-        
-         System.out.println("Documento creado:");
-                System.out.println("Nombre: " + nombredoc);
-                System.out.println("Tamaño: " + tamanodoc);
-                System.out.println("Tipo: " + tipodoc);
-                System.out.println("Tiempo: " + tiempo);
-    usuarioData.add(Prueba);    
-    VerArrayDoble(usuarioData);
-    System.out.println(usuarioData.size()); //Para ver el almacenamiento.
-    
-    
-    
-    System.out.println(list);
-
-    
-        
-        
-
     }//GEN-LAST:event_crearDocumentoActionPerformed
+
+    private void docnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_docnombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_docnombreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,5 +223,21 @@ public class CrearDocumento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+
+    class Fondo extends JPanel{
+        private Image imagen;
+        
+        @Override
+        public void paint(Graphics g){
+            imagen= new ImageIcon(getClass().getResource("/imagenes/fondo2.jpg")).getImage();
+            g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
+                    setOpaque(false);
+                    
+                    super.paint(g);
+        }
+    }
+
 }

@@ -128,7 +128,7 @@ public class RegistroUsr extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             
-            System.out.println(RegistroUser.getText());
+            
             if(!new ModificarArchivo().validador(selectedFile.toString(), RegistroUser.getText())){
                 JOptionPane.showMessageDialog(null, "Error el usuario no existe", "Error", JOptionPane.ERROR_MESSAGE);
                 
@@ -147,9 +147,15 @@ public class RegistroUsr extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_continuarActionPerformed
 
+    public String getUsuarioName() {
+        return UsuarioName;
+    }
+
+    
+    
+    
     private void RegistroUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroUserActionPerformed
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_RegistroUserActionPerformed
 
     /**

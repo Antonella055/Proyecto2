@@ -14,24 +14,13 @@ public class Documento {
     private String nombre;
     private String tamano;
     private String tipo;
-    private String tiempo;
     private String prioridad;
     public ArrayList<ArrayList<Documento>> listaGeneral;
 
-    public Documento(String nombre, String tamano, String tipo, String tiempo) {
+    public Documento(String nombre, String tamano, String tipo) {
         this.nombre = nombre;
         this.tamano = tamano;
         this.tipo = tipo;
-        this.tiempo = tiempo;
-        this.listaGeneral= new ArrayList<>(new Object[0], 0);
         
     }
-    
-   
-
-    
-    
-    
-    
-    
 }

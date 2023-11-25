@@ -91,7 +91,7 @@ public class AgregarUsuario extends javax.swing.JFrame {
             }
         });
 
-        PrioridadUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "Prioridad Alta", "Prioridad Media", "Prioridad Baja" }));
+        PrioridadUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "prioridad alta", "prioridad media", "prioridad baja" }));
         PrioridadUsuario.setToolTipText("");
         PrioridadUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -20,10 +20,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class Monticulo { //Abrir archivo y usar sus datos para la creacion del Monticulo
      public static File selectedFile; 
 
-    public static void main(String[] args) {
+    public static void ColaAmonticulo() {
         Constr_monticulo tree = new Constr_monticulo();
    
-            try (BufferedReader br = new BufferedReader(new FileReader(selectedFile))) {
+            try (BufferedReader br = new BufferedReader(new FileReader("documentoCola.csv"))){
                 String line;
                 while ((line = br.readLine()) != null) {
                     String[] data = line.split(",");
@@ -32,6 +32,13 @@ public class Monticulo { //Abrir archivo y usar sus datos para la creacion del M
                     int nivelprioridad;
                     switch (prioridad) {
                     //asignarle un valor numerico dependiendo de la prioridad del usuario
+                        case "Prioritario":
+                            nivelprioridad = 3;
+                            break;
+                        case "No prioritario":
+                            nivelprioridad = 1;
+                            break;
+                            //Por si acaso
                         case "prioridad_baja":
                             nivelprioridad = 1;
                             break;

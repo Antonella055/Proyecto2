@@ -110,7 +110,6 @@ public class Usuario {
             }
         }
     }
- 
    public void cambiarImprimirTiempo(boolean valor) {
            imprimirTiempo = valor;
        }
@@ -119,38 +118,51 @@ public class Usuario {
         return imprimirTiempo;
     }
 
-    public ArrayList<Object> CrearDocumento(String nombre,String tamano,String tipo) throws FileNotFoundException {
+    public void CrearDocumento(String usuario,String nombre,String tamano,String tipo) throws FileNotFoundException {
         ArrayList<String>  Prueba = new ArrayList<>(new Object[0], 0);
         ArrayList<Object> list = new ArrayList<>(new Object[0], 0);
-        
-        try{
-            File archivo= new File("tiempo.txt");
-            try (Scanner scanner = new Scanner(archivo)) {
-                tiempoRegistrado=scanner.nextLine();
-            }
-            
-        } catch (FileNotFoundException e) {
-            System.out.println("Error en leer tiempo");
-            e.printStackTrace();
-        }
         
         try {
         FileWriter writer = new FileWriter("documentoUsuario.csv", true);
         BufferedWriter buffer = new BufferedWriter(writer);
         
-        
-        
-        buffer.write(nombre + "," + tamano + "," + tipo + "," + tiempoRegistrado);
+        buffer.write(usuario+","+nombre + "," + tamano + "," + tipo);
         buffer.newLine();
         buffer.close();
         System.out.println("Documento creado y guardado en documentoUsuario.csv");
         
-       File archivoTiempo = new File("tiempo.txt");
+       
    
     } catch (IOException e) {
         System.out.println("Error al guardar el documento en el archivo");
         e.printStackTrace();
     }
-        return null;
+        
     }
+    
+    public void DocImpresion(String nombre,String tiempo){
+        
+        
+        
+        
+        
+         try {
+        FileWriter writer = new FileWriter("documentoImpresion.csv", true);
+        BufferedWriter buffer = new BufferedWriter(writer);
+        
+        buffer.write(nombre + "," + tiempo);
+        buffer.newLine();
+        buffer.close();
+        System.out.println("Documento agregado");
+        
+    } catch (IOException e) {
+        System.out.println("Error al guardar el documento en el archivo");
+        e.printStackTrace();
+    }
+        
+        
+        
+    }
+    
+    
 }

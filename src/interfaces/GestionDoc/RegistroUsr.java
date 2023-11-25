@@ -23,7 +23,7 @@ import javax.swing.JPanel;
  */
 public class RegistroUsr extends javax.swing.JFrame {
         public static  ArrayList<Object> usuarioData;
-        public static String UsuarioName;
+        public String UsuarioName;
         public static  ArrayList<Object> ListaDocumentos = new ArrayList<>(new Object[0], 0);
     /**
      * Creates new form RegistroUsr
@@ -128,7 +128,7 @@ public class RegistroUsr extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             
-            System.out.println(RegistroUser.getText());
+            
             if(!new ModificarArchivo().validador(selectedFile.toString(), RegistroUser.getText())){
                 JOptionPane.showMessageDialog(null, "Error el usuario no existe", "Error", JOptionPane.ERROR_MESSAGE);
                 
@@ -138,7 +138,7 @@ public class RegistroUsr extends javax.swing.JFrame {
                 setVisible(false);
                 new Documentos().setVisible(true);}
             //    usuarioDocumento.add(RegistroUser.getText());
-                UsuarioName = RegistroUser.getText();
+               this. UsuarioName = RegistroUser.getText();
                 usuarioData = new ArrayList<>(new Object[0], 0);
                 usuarioData.add(UsuarioName);
                 System.out.println(UsuarioName);
@@ -147,9 +147,15 @@ public class RegistroUsr extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_continuarActionPerformed
 
+    public String getUsuarioName() {
+        return UsuarioName;
+    }
+
+    
+    
+    
     private void RegistroUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroUserActionPerformed
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_RegistroUserActionPerformed
 
     /**

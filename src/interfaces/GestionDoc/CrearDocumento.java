@@ -159,10 +159,9 @@ public class CrearDocumento extends javax.swing.JFrame {
         tipodoc= doctipo.getText();
            
        Usuario user = new Usuario();
-       user.cambiarImprimirTiempo(true);
-     
+       
         try {
-            user.CrearDocumento(nombredoc, tamanodoc, tipodoc);
+            user.CrearDocumento(new RegistroUsr().getUsuarioName(),nombredoc, tamanodoc, tipodoc);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(CrearDocumento.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

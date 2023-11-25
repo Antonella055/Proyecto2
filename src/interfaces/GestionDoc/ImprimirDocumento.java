@@ -5,9 +5,11 @@
 package interfaces.GestionDoc;
 
 import Usuario.Usuario;
-import interfaces.Usuario.BuscarUsuario;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -22,6 +24,18 @@ public class ImprimirDocumento extends javax.swing.JFrame {
      */
     public ImprimirDocumento() {
         initComponents();
+        
+        try (BufferedReader br = new BufferedReader(new FileReader("documentoUsuario.csv"))) {
+        String linea;
+        while ((linea = br.readLine()) != null) {
+            String[] datos = linea.split(",");
+            // Agregar los datos al combo box
+            documento.addItem(datos[0]);
+        }
+    } catch (IOException e) {
+        System.out.println("Error al leer el archivo CSV");
+        e.printStackTrace();
+    }
     }
 
     /**
@@ -39,8 +53,8 @@ public class ImprimirDocumento extends javax.swing.JFrame {
         jPanel1 = new Fondo();
         cancelar = new javax.swing.JButton();
         imprimir = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        prioridad = new javax.swing.JComboBox<>();
+        documento = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -72,7 +86,12 @@ public class ImprimirDocumento extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "Prioritario", "No prioritario" }));
+        prioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "Prioritario", "No prioritario" }));
+        prioridad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prioridadActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Eras Demi ITC", 0, 12)); // NOI18N
         jLabel1.setText("Prioridad:");
@@ -97,8 +116,8 @@ public class ImprimirDocumento extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(prioridad, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(documento, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(112, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -107,10 +126,10 @@ public class ImprimirDocumento extends javax.swing.JFrame {
                 .addContainerGap(121, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(documento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(prioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -133,12 +152,21 @@ public class ImprimirDocumento extends javax.swing.JFrame {
 
     private void imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirActionPerformed
         // TODO add your handling code here:
-        
+        documento.getSelectedItem();
+        prioridad.getSelectedItem();
      
-       
-        
+       Usuario user = new Usuario();
+       user.cambiarImprimirTiempo(true);
         
     }//GEN-LAST:event_imprimirActionPerformed
+
+    private void prioridadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prioridadActionPerformed
+        // TODO add your handling code here:
+        
+    
+
+        
+    }//GEN-LAST:event_prioridadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,15 +206,15 @@ public class ImprimirDocumento extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelar;
+    private javax.swing.JComboBox<String> documento;
     private javax.swing.JButton imprimir;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox<String> prioridad;
     // End of variables declaration//GEN-END:variables
 
 class Fondo extends JPanel{

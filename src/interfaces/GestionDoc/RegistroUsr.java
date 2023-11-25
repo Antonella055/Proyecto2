@@ -4,10 +4,17 @@
  */
 package interfaces.GestionDoc;
 
+import Estructuras.ArrayList;
+import Estructuras.ModificarArchivo;
+import static MonticuloBinario.Monticulo.selectedFile;
 import interfaces.Menu;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -15,12 +22,15 @@ import javax.swing.JPanel;
  * @author Antonella
  */
 public class RegistroUsr extends javax.swing.JFrame {
-
+        public static  ArrayList<Object> usuarioData;
+        public static String UsuarioName;
+        public static  ArrayList<Object> ListaDocumentos = new ArrayList<>(new Object[0], 0);
     /**
      * Creates new form RegistroUsr
      */
     public RegistroUsr() {
         initComponents();
+        setResizable(false);
         
     }
 
@@ -115,14 +125,31 @@ public class RegistroUsr extends javax.swing.JFrame {
     }//GEN-LAST:event_volverActionPerformed
 
     private void continuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuarActionPerformed
-        // TODO add your handling code here:
-        
-        setVisible(false);
-        new Documentos().setVisible(true);
+        try {
+            // TODO add your handling code here:
+            
+            System.out.println(RegistroUser.getText());
+            if(!new ModificarArchivo().validador(selectedFile.toString(), RegistroUser.getText())){
+                JOptionPane.showMessageDialog(null, "Error el usuario no existe", "Error", JOptionPane.ERROR_MESSAGE);
+                
+            }else{
+                
+                
+                setVisible(false);
+                new Documentos().setVisible(true);}
+            //    usuarioDocumento.add(RegistroUser.getText());
+                UsuarioName = RegistroUser.getText();
+                usuarioData = new ArrayList<>(new Object[0], 0);
+                usuarioData.add(UsuarioName);
+                System.out.println(UsuarioName);
+        } catch (IOException ex) {
+            Logger.getLogger(RegistroUsr.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_continuarActionPerformed
 
     private void RegistroUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroUserActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_RegistroUserActionPerformed
 
     /**

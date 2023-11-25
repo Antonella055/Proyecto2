@@ -7,8 +7,8 @@ package Estructuras;
 /**
  *
  * @author luciano
- * @param <E>
  */
+
 
 public class ArrayList<E>{
     private Object[] elementos;
@@ -69,5 +69,24 @@ public class ArrayList<E>{
     public int size() {
     return size;
 }
-}
 
+    public static void VerArrayDoble(ArrayList list) {
+        for (int i = 0; i < list.size(); i++) {
+            Object obj = list.get(i);
+
+            if (obj instanceof ArrayList) {
+                ArrayList<?> innerArrayList = (ArrayList<?>) obj;
+                for (int j = 0; j < innerArrayList.size(); j++) {
+                    Object a = innerArrayList.get(j);
+                    System.out.println(a);
+                }
+            } else {
+                System.out.println(obj.toString());
+            }
+        }
+    }
+
+    public static void VerElemenEspecifico(ArrayList list, int number) {
+        System.out.println(list.get(number).toString());
+    }
+}

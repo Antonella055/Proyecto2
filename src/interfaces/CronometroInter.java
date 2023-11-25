@@ -4,6 +4,7 @@
  */
 package interfaces;
 
+import Usuario.Usuario;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -17,15 +18,17 @@ import javax.swing.Timer;
  * @author Antonella
  */
 public class CronometroInter extends javax.swing.JFrame {
-   public String tiempoUsuario;
-   private final Timer tiempo;
+   public final Timer tiempo;
    private int miliseg=0;
    private int segundos=0;
    private int minutos=0;
    private int horas=0;
+   public String tiempoactual;
+ public String time;
+  public String tiempo1;
    
    
-    private ActionListener acciones= new ActionListener(){
+    public  ActionListener acciones= new ActionListener(){
         @Override
         public void actionPerformed(ActionEvent e){
            miliseg ++;
@@ -45,35 +48,36 @@ public class CronometroInter extends javax.swing.JFrame {
            }if(horas==24){
                horas=0;
            }
-           actualizarEtiqueta();
+           
+           time = actualizarEtiqueta();
+           
+           String tiempoactual=obtenerTime(time);
+           new Usuario().procesaTiempo(tiempoactual);
         }
-                
-                
                 };
    
+    
     public void StartReloj(){
         tiempo.start();
     }
-    public void StopReloj(){
-        tiempo.stop();
-        tiempoUsuario = String.format("%02d:%02d:%02d:%02d", horas, minutos, segundos, miliseg);
-    }
     
+    public String obtenerTime(String tiempo)  {
+         return tiempo=String.format("%02d:%02d:%02d:%03d", horas, minutos, segundos, miliseg);
+    }         
     
-   
-   private void actualizarEtiqueta(){
-       String texto= (horas<=9?"0":"")+horas+":"+(minutos<=9?"0":"")+minutos+":"+(segundos<=9?"0":"")+segundos+":"+(miliseg <=9?"0":"")+miliseg;
-       etiquetatiempo.setText(texto);
+   private String actualizarEtiqueta(){
+       
+       tiempoactual= (horas<=9?"0":"")+horas+":"+(minutos<=9?"0":"")+minutos+":"+(segundos<=9?"0":"")+segundos+":"+(miliseg <=9?"0":"")+miliseg;
+       etiquetatiempo.setText(tiempoactual);
+       return tiempoactual;
    }
-   
-   
    
         public CronometroInter() {
         initComponents();
         tiempo= new Timer(10,acciones);
     }
        
-       
+
 
     /**
      * This method is called from within the constructor to initialize the form.

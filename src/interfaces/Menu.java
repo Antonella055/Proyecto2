@@ -123,8 +123,9 @@ public class Menu extends javax.swing.JFrame {
         jLabel1.setText("Menu");
         menu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
 
-        SeleccionarArchivo.setBackground(new java.awt.Color(102, 102, 102));
+        SeleccionarArchivo.setBackground(new java.awt.Color(204, 255, 204));
         SeleccionarArchivo.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        SeleccionarArchivo.setForeground(new java.awt.Color(51, 51, 51));
         SeleccionarArchivo.setText("Seleccionar Archivo");
         SeleccionarArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,7 +161,6 @@ public class Menu extends javax.swing.JFrame {
     private void documentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_documentosActionPerformed
         // TODO add your handling code here:
        new RegistroUsr().setVisible(true);
-        
         
     }//GEN-LAST:event_documentosActionPerformed
 

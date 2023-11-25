@@ -4,9 +4,19 @@
  */
 package interfaces.GestionDoc;
 
+import Estructuras.ArrayList;
+import static Estructuras.ArrayList.VerElemenEspecifico;
+import Usuario.Documento;
 import Usuario.Usuario;
+import interfaces.CronometroInter;
+
+import static Estructuras.ArrayList.VerArrayDoble;
+import static interfaces.GestionDoc.RegistroUsr.usuarioData;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -18,6 +28,8 @@ public class CrearDocumento extends javax.swing.JFrame {
     public String nombredoc;
     public String tamanodoc;
     public String  tipodoc;
+    public ArrayList array;
+  
 
     /**
      * Creates new form CrearDocumento
@@ -59,7 +71,18 @@ public class CrearDocumento extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Eras Demi ITC", 0, 12)); // NOI18N
         jLabel2.setText("Tamaño:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 151, -1, -1));
+
+        docnombre.setForeground(new java.awt.Color(153, 153, 153));
+        docnombre.setToolTipText("");
+        docnombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                docnombreActionPerformed(evt);
+            }
+        });
         getContentPane().add(docnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 100, 260, -1));
+
+        doctamano.setForeground(new java.awt.Color(153, 153, 153));
+        doctamano.setText("60bytes...");
         getContentPane().add(doctamano, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 144, 259, -1));
 
         jLabel3.setFont(new java.awt.Font("Mongolian Baiti", 1, 14)); // NOI18N
@@ -72,6 +95,9 @@ public class CrearDocumento extends javax.swing.JFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/archivo.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 17, 37, -1));
+
+        doctipo.setForeground(new java.awt.Color(153, 153, 153));
+        doctipo.setText("pdf,png...");
         getContentPane().add(doctipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 188, 237, -1));
 
         jLabel6.setFont(new java.awt.Font("Eras Demi ITC", 0, 12)); // NOI18N
@@ -130,12 +156,21 @@ public class CrearDocumento extends javax.swing.JFrame {
         nombredoc= docnombre.getText();
          tamanodoc=doctamano.getText();
         tipodoc= doctipo.getText();
-        new Usuario().crearDocumento(nombredoc, tamanodoc, tipodoc);
-         System.out.println("Documento creado:");
-                System.out.println("Nombre: " + nombredoc);
-                System.out.println("Tamaño: " + tamanodoc);
-                System.out.println("Tipo: " + tipodoc);
+        
+        Usuario user = new Usuario();
+       user.cambiarImprimirTiempo(true);
+       
+        try {
+            user.CrearDocumento(nombredoc, tamanodoc, tipodoc);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CrearDocumento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_crearDocumentoActionPerformed
+
+    private void docnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_docnombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_docnombreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,6 +198,7 @@ public class CrearDocumento extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CrearDocumento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -187,7 +223,8 @@ public class CrearDocumento extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
-class Fondo extends JPanel{
+
+    class Fondo extends JPanel{
         private Image imagen;
         
         @Override
@@ -200,10 +237,4 @@ class Fondo extends JPanel{
         }
     }
 
-
-
-
 }
-
-
-

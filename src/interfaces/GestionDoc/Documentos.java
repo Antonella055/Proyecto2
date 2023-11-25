@@ -4,6 +4,9 @@
  */
 package interfaces.GestionDoc;
 
+import static Estructuras.ArrayList.VerArrayDoble;
+import static interfaces.GestionDoc.RegistroUsr.ListaDocumentos;
+import static interfaces.GestionDoc.RegistroUsr.usuarioData;
 import interfaces.Menu;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -160,7 +163,9 @@ public class Documentos extends javax.swing.JFrame {
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        
+        ListaDocumentos.add(usuarioData);
+        VerArrayDoble(ListaDocumentos);
+            
     }//GEN-LAST:event_volverActionPerformed
 
     /**

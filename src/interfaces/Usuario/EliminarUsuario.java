@@ -8,6 +8,7 @@ import Usuario.Usuario;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -141,14 +142,17 @@ public class EliminarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_volverActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
-        // TODO add your handling code here:
-        
-        usuarioEliminado=usuario.getText();
         try {
+            // TODO add your handling code here:
+            
+            usuarioEliminado=usuario.getText();
             new Usuario().EliminarUsuario(usuarioEliminado);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(EliminarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(EliminarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }//GEN-LAST:event_eliminarActionPerformed
 
     /**

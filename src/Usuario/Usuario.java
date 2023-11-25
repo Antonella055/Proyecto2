@@ -5,9 +5,10 @@
 package Usuario;
 
 import Estructuras.ArrayList;
-import Estructuras.Iterator;
+import static Estructuras.ArrayList.VerArrayDoble;
 import static MonticuloBinario.Monticulo.selectedFile;
-import interfaces.GestionDoc.CrearDocumento;
+import static interfaces.GestionDoc.RegistroUsr.usuarioData;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -15,9 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
+import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,21 +24,10 @@ import javax.swing.JOptionPane;
  * @author Antonella
  */
 public class Usuario {
+    private static boolean imprimirTiempo = false;
+    private String tiempoRegistrado;
     
-    public String linea;
     
-    
-    //Crear documento
-    public void crearDocumento(String nombre, String tamaño, String tipo){
-        CrearDocumento doc= new CrearDocumento();
-        ArrayList<Documento> documentos= new ArrayList<>();
-        
-        Documento documento= new Documento(nombre,tamaño,tipo);
-        documentos.add(documento);
-        documento.listaGeneral.add(documentos);
-        System.out.println (documento.listaGeneral);
-        
-    }
     
     public void AgregarUsuario(String nombre,String tipo) throws IOException{
         boolean Existe= false;
@@ -59,8 +47,8 @@ public class Usuario {
         } else {
             
         try{
+            tipo=tipo.replace(" ","_"); //aplicar el formato del csv 
             BufferedWriter writer= new BufferedWriter(new FileWriter(selectedFile,true));
-            writer.newLine();
             writer.write(nombre+","+tipo);
             writer.newLine();
             writer.close();
@@ -73,39 +61,95 @@ public class Usuario {
     }
     
     
-    public void EliminarUsuario(String nombre) throws FileNotFoundException{
-        boolean Existe= false;
-        ArrayList<String>  lineasArchivo= new ArrayList();
-        try (BufferedReader lector = new BufferedReader(new FileReader(selectedFile))){
-            String linea;
-            while ((linea=lector.readLine()) !=null){
-                String[] campos= linea.split(",");
-                //Comprobar que el usuario no exista ya en el archivo
-                if (campos.length >= 2 && campos[0].equals(nombre)) {
-                    Existe= true;
-                    String Usereliminar = campos[0];
-                     lineasArchivo.add(Usereliminar);
-                    break;
-            }
-        }
-        } catch (IOException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-       
-        try(BufferedWriter escritor = new BufferedWriter(new FileWriter(selectedFile))){
+    public void EliminarUsuario(String nombre) throws FileNotFoundException, IOException{
+        boolean encontrado=false;
+        ArrayList<String> lineas = new ArrayList<>(new Object[0], 0);
+        
             try (BufferedReader lector = new BufferedReader(new FileReader(selectedFile))) {
-            String linea;
-            while ((linea = lector.readLine()) != null) {
-                String[] campos = linea.split(",");
-                
+                String linea;
+                while ((linea=lector.readLine()) !=null){
+                    String[] campos= linea.split(",");
+                    //Comprobar que el usuario no exista ya en el archivo
+                    if (campos.length >= 2 && campos[0].equals(nombre)) {
+                       if(!linea.trim().isEmpty()){
+                        encontrado=true;
+                       }
+                    }else{
+                    lineas.add(linea);
+                }   }
+            
+                    if (encontrado) { //sobre escribir la info del array en el csv sin el usuario eliminado
+                    try (BufferedWriter escritor = new BufferedWriter(new FileWriter(selectedFile))) {
+                         for (int i =0; i< lineas.size(); i++){
+                        String actuali= lineas.get(i);
+                            escritor.write(actuali);
+                            escritor.newLine();
+                        
+                        }
+                    }
+                    JOptionPane.showMessageDialog(null, "El usuario " + nombre + " se ha eliminado", "Eliminar Usuario", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                        JOptionPane.showMessageDialog(null, "El usuario no esta registrado", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+        }}
+ public void procesaTiempo(String tiempo){
+        if(debeImprimirTiempo()){
+             System.out.println("Entrada de documento: " + tiempo);
+             imprimirTiempo = false;
+             
+             try{ //solucion al actionlistener donde se extrae el tiempo para obtener ese valor
+                 FileWriter writer= new FileWriter("tiempo.txt");
+                 BufferedWriter buffer= new BufferedWriter(writer);
+                 
+                 buffer.write(tiempo);
+                 buffer.close();
+                System.out.println("Tiempo guardado en archivo.txt");
+             } catch (IOException e) {
+                System.out.println("Error al guardar el tiempo en el archivo");
+                e.printStackTrace();
             }
         }
-        }   catch (IOException ex1) {
-                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex1);
-            }
-        }
-        }
-    
+    }
+ 
+   public void cambiarImprimirTiempo(boolean valor) {
+           imprimirTiempo = valor;
+       }
+
+    public boolean debeImprimirTiempo(){
+        return imprimirTiempo;
     }
 
-    
-   
+    public ArrayList<Object> CrearDocumento(String nombre,String tamano,String tipo) throws FileNotFoundException {
+        ArrayList<String>  Prueba = new ArrayList<>(new Object[0], 0);
+        ArrayList<Object> list = new ArrayList<>(new Object[0], 0);
+        
+        try{
+            File archivo= new File("tiempo.txt");
+            try (Scanner scanner = new Scanner(archivo)) {
+                tiempoRegistrado=scanner.nextLine();
+            }
+            
+        } catch (FileNotFoundException e) {
+            System.out.println("Error en leer tiempo");
+            e.printStackTrace();
+        }
+        
+        Prueba.add(nombre);
+        Prueba.add(tamano);
+        Prueba.add(tipo);
+        Prueba.add(tiempoRegistrado);
+
+        
+         System.out.println("Documento creado:");
+                System.out.println("Nombre: " + nombre);
+                System.out.println("Tamaño: " + tamano);
+                System.out.println("Tipo: " + tipo);
+                System.out.println("Tiempo: " + tiempoRegistrado);
+//                System.out.println("Tiempo: " + tiempo);
+    usuarioData.add(Prueba);    
+    VerArrayDoble(usuarioData);
+    System.out.println(usuarioData.size()); //Para ver el almacenamiento.
+    System.out.println(list);
+        return list;
+    }
+}

@@ -21,15 +21,6 @@ public class Documento {
         this.nombre = nombre;
         this.tamano = tamano;
         this.tipo = tipo;
-        this.listaGeneral= new ArrayList<>();
         
     }
-    
-   
-
-    
-    
-    
-    
-    
 }

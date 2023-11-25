@@ -73,11 +73,13 @@ public class ModificarArchivo{
     public static boolean validador(String file, String nombre) throws FileNotFoundException, IOException{
         String line = null;
         BufferedReader br = new BufferedReader(new FileReader(file));
+        
         while ((line = br.readLine()) != null) {
-
-        if (line.trim().equals(nombre)) {
+            
+        if (line.split(",")[0].equals(nombre)) {
             br.close();
             return true;
+            
         }
       }
         br.close();

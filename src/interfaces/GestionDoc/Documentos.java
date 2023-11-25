@@ -5,6 +5,7 @@
 package interfaces.GestionDoc;
 
 import static Estructuras.ArrayList.VerArrayDoble;
+import static Estructuras.ModificarArchivo.BorrarArchivo;
 import static interfaces.GestionDoc.RegistroUsr.ListaDocumentos;
 import static interfaces.GestionDoc.RegistroUsr.usuarioData;
 import interfaces.Menu;
@@ -162,6 +163,8 @@ public class Documentos extends javax.swing.JFrame {
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
         // TODO add your handling code here:
+        
+        
         setVisible(false);
         ListaDocumentos.add(usuarioData);
         VerArrayDoble(ListaDocumentos);

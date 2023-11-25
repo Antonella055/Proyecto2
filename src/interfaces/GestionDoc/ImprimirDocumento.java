@@ -32,9 +32,10 @@ public class ImprimirDocumento extends javax.swing.JFrame {
         try (BufferedReader br = new BufferedReader(new FileReader("documentoUsuario.csv"))) {
         String linea;
         while ((linea = br.readLine()) != null) {
+            if (linea.split(",")[0].equals(UsuarioName)){
             String[] datos = linea.split(",");
             // Agregar los datos al combo box
-            documento.addItem(datos[0]);
+            documento.addItem(datos[1]);}
         }
     } catch (IOException e) {
         System.out.println("Error al leer el archivo CSV");

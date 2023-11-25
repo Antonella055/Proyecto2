@@ -103,5 +103,11 @@ public class ModificarArchivo{
                             JOptionPane.showMessageDialog(null, "ERROR: El usuario no fue encontrado, por favor ingrese un usuario que exista", "Alerta", JOptionPane.ERROR_MESSAGE);
                 }
     }
+       
+     public static void BorrarArchivo() {
+     File filedel = new File("documentoUsuario.csv"); 
+     filedel.delete();
+
+     }
     
 }

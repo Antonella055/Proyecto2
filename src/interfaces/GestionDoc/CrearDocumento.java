@@ -11,6 +11,7 @@ import Usuario.Usuario;
 import interfaces.CronometroInter;
 
 import static Estructuras.ArrayList.VerArrayDoble;
+import static interfaces.GestionDoc.RegistroUsr.UsuarioName;
 import static interfaces.GestionDoc.RegistroUsr.usuarioData;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -161,7 +162,8 @@ public class CrearDocumento extends javax.swing.JFrame {
        Usuario user = new Usuario();
        
         try {
-            user.CrearDocumento(new RegistroUsr().getUsuarioName(),nombredoc, tamanodoc, tipodoc);
+            user.CrearDocumento(UsuarioName,nombredoc, tamanodoc, tipodoc);
+           
         } catch (FileNotFoundException ex) {
             Logger.getLogger(CrearDocumento.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

@@ -23,7 +23,7 @@ import javax.swing.JPanel;
  */
 public class RegistroUsr extends javax.swing.JFrame {
         public static  ArrayList<Object> usuarioData;
-        public String UsuarioName;
+        public static String UsuarioName;
         public static  ArrayList<Object> ListaDocumentos = new ArrayList<>(new Object[0], 0);
     /**
      * Creates new form RegistroUsr
@@ -138,7 +138,7 @@ public class RegistroUsr extends javax.swing.JFrame {
                 setVisible(false);
                 new Documentos().setVisible(true);}
             //    usuarioDocumento.add(RegistroUser.getText());
-               this. UsuarioName = RegistroUser.getText();
+                UsuarioName = RegistroUser.getText();
                 usuarioData = new ArrayList<>(new Object[0], 0);
                 usuarioData.add(UsuarioName);
                 System.out.println(UsuarioName);

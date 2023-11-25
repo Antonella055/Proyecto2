@@ -4,8 +4,11 @@
  */
 package MonticuloBinario;
 
+import Estructuras.ArrayList;
+import Usuario.Documento;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JFileChooser;
@@ -20,41 +23,30 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class Monticulo { //Abrir archivo y usar sus datos para la creacion del Monticulo
      public static File selectedFile; 
 
-    public static void main(String[] args) {
-        Constr_monticulo tree = new Constr_monticulo();
-   
-            try (BufferedReader br = new BufferedReader(new FileReader(selectedFile))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    String[] data = line.split(",");
-                    String username = data[0];
-                    String prioridad = data[1];
-                    int nivelprioridad;
-                    switch (prioridad) {
-                    //asignarle un valor numerico dependiendo de la prioridad del usuario
-                        case "prioridad_baja":
-                            nivelprioridad = 1;
-                            break;
-                        case "prioridad_media":
-                            nivelprioridad = 2;
-                            break;
-                        case "prioridad_alta":
-                            nivelprioridad = 3;
-                            break;
-                        default:
-                            nivelprioridad = 0;
-                            break;
-                    }
-                    tree.raiz = tree.insertar(tree.raiz, username, nivelprioridad);
+    public static void ColaAmonticulo() {
+        Documento documento = new Documento( "", 0); // Create a Documento object
+
+            try {
+                 ArrayList<Documento> documentos = documento.ValidarDoc_Usuario(documento);
+                Constr_monticulo tree = new Constr_monticulo();
+                for (int i =0; i< documentos.size(); i++){
+                        Documento doc= documentos.get(i);
+                        String nombreDocumento = doc.getNombreDocumento();
+                         int tiempoAlterado = doc.getTiempoAlterado(); 
+                         tree.raiz = tree.insertar(tree.raiz, nombreDocumento, tiempoAlterado);
                 }
+                
+                tree.printMonticulo(tree.raiz, "", true);
+            } catch (FileNotFoundException e) {
+                System.out.println("Archivo no encontrado.");
+                e.printStackTrace();
             } catch (IOException e) {
+                System.out.println("Error al leer el archivo.");
                 e.printStackTrace();
             }
-        
-        tree.printMonticulo(tree.raiz, "", true);
+
     }
 
-    
     
      public void abrirArchivo(){
         JFileChooser fileChooser = new JFileChooser(); //JFileChooser ->abrir un cuadro de diálogo donde el usuario puede elegir un fichero a través del explorador de archivos de su equipo.

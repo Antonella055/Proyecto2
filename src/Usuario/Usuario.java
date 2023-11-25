@@ -17,6 +17,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -110,6 +112,18 @@ public class Usuario {
             }
         }
     }
+ public String obtenerTiempo() {
+
+    try (BufferedReader br = new BufferedReader(new FileReader("tiempo.txt"))) {
+        tiempoRegistrado = br.readLine();
+    } catch (IOException e) {
+        System.out.println("Error al leer el archivo tiempo.txt");
+        e.printStackTrace();
+    }
+    return tiempoRegistrado;
+}
+ 
+ 
    public void cambiarImprimirTiempo(boolean valor) {
            imprimirTiempo = valor;
        }
@@ -129,7 +143,28 @@ public class Usuario {
         buffer.write(usuario+","+nombre + "," + tamano + "," + tipo);
         buffer.newLine();
         buffer.close();
-        System.out.println("Documento creado y guardado en documentoUsuario.csv");
+        JOptionPane.showMessageDialog(null, "El documento " + nombre + " se ha creado correctamentre", "Crear Documento", JOptionPane.INFORMATION_MESSAGE);
+        
+       
+   
+    } catch (IOException e) {
+        System.out.println("Error al guardar el documento en el archivo");
+        e.printStackTrace();
+    }
+        
+    }
+     public void CrearDocumentoCola(String usuario,String prioridad) throws FileNotFoundException {
+        ArrayList<String>  Prueba = new ArrayList<>(new Object[0], 0);
+        ArrayList<Object> list = new ArrayList<>(new Object[0], 0);
+        
+        try {
+        FileWriter writer = new FileWriter("documentoCola.csv", true);
+        BufferedWriter buffer = new BufferedWriter(writer);
+        
+        buffer.write(usuario+","+prioridad+","+obtenerTiempo());
+        buffer.newLine();
+        buffer.close();
+        System.out.println("Documento creado y guardado en documentoCola.csv");
         
        
    
@@ -140,12 +175,8 @@ public class Usuario {
         
     }
     
+    
     public void DocImpresion(String nombre,String tiempo){
-        
-        
-        
-        
-        
          try {
         FileWriter writer = new FileWriter("documentoImpresion.csv", true);
         BufferedWriter buffer = new BufferedWriter(writer);
@@ -159,10 +190,11 @@ public class Usuario {
         System.out.println("Error al guardar el documento en el archivo");
         e.printStackTrace();
     }
-        
-        
-        
     }
     
     
-}
+        
+        
+                    }
+    
+            

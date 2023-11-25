@@ -5,11 +5,15 @@
 package interfaces.GestionDoc;
 
 import Usuario.Usuario;
+import static interfaces.GestionDoc.RegistroUsr.UsuarioName;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -25,12 +29,13 @@ public class ImprimirDocumento extends javax.swing.JFrame {
     public ImprimirDocumento() {
         initComponents();
         
-        try (BufferedReader br = new BufferedReader(new FileReader("documentoUsuario.csv"))) {
+       try (BufferedReader br = new BufferedReader(new FileReader("documentoUsuario.csv"))) {
         String linea;
         while ((linea = br.readLine()) != null) {
+            if (linea.split(",")[0].equals(UsuarioName)){
             String[] datos = linea.split(",");
             // Agregar los datos al combo box
-            documento.addItem(datos[0]);
+            documento.addItem(datos[1]);}
         }
     } catch (IOException e) {
         System.out.println("Error al leer el archivo CSV");
@@ -90,6 +95,12 @@ public class ImprimirDocumento extends javax.swing.JFrame {
         prioridad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 prioridadActionPerformed(evt);
+            }
+        });
+
+        documento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                documentoActionPerformed(evt);
             }
         });
 
@@ -154,9 +165,21 @@ public class ImprimirDocumento extends javax.swing.JFrame {
         // TODO add your handling code here:
         documento.getSelectedItem();
         prioridad.getSelectedItem();
-     
+        String a = (String) documento.getSelectedItem();
+        String b = (String) prioridad.getSelectedItem();
+        System.out.println(a + b);
        Usuario user = new Usuario();
+       
+       try {
+            user.CrearDocumentoCola(a,b);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CrearDocumento.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CrearDocumento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
        user.cambiarImprimirTiempo(true);
+       
         
     }//GEN-LAST:event_imprimirActionPerformed
 
@@ -167,6 +190,10 @@ public class ImprimirDocumento extends javax.swing.JFrame {
 
         
     }//GEN-LAST:event_prioridadActionPerformed
+
+    private void documentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_documentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_documentoActionPerformed
 
     /**
      * @param args the command line arguments

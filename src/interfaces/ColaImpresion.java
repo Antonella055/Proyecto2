@@ -4,6 +4,7 @@
  */
 package interfaces;
 
+import static MonticuloBinario.Monticulo.ColaAmonticulo;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -32,7 +33,7 @@ public class ColaImpresion extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        VerArbol = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         Volver = new javax.swing.JButton();
@@ -48,17 +49,17 @@ public class ColaImpresion extends javax.swing.JFrame {
         jButton1.setBorderPainted(false);
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 192, 156, 38));
 
-        jButton2.setBackground(new java.awt.Color(204, 255, 255));
-        jButton2.setForeground(new java.awt.Color(51, 51, 51));
-        jButton2.setText("Ver Arbol");
-        jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton2.setBorderPainted(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        VerArbol.setBackground(new java.awt.Color(204, 255, 255));
+        VerArbol.setForeground(new java.awt.Color(51, 51, 51));
+        VerArbol.setText("Ver Arbol");
+        VerArbol.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        VerArbol.setBorderPainted(false);
+        VerArbol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                VerArbolActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 192, 145, 38));
+        getContentPane().add(VerArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 192, 145, 38));
 
         jLabel1.setFont(new java.awt.Font("Eras Demi ITC", 0, 18)); // NOI18N
         jLabel1.setText("Datos de la Cola De Impresion");
@@ -94,9 +95,10 @@ public class ColaImpresion extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void VerArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerArbolActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        ColaAmonticulo();
+    }//GEN-LAST:event_VerArbolActionPerformed
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
         // TODO add your handling code here:
@@ -141,9 +143,9 @@ public class ColaImpresion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Fondo;
+    private javax.swing.JButton VerArbol;
     private javax.swing.JButton Volver;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

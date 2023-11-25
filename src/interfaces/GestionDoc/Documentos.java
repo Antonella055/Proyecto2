@@ -229,6 +229,4 @@ public class Documentos extends javax.swing.JFrame {
         }
     }
 
-
-
 }

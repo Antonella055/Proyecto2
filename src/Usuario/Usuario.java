@@ -78,7 +78,7 @@ public class Usuario {
                     lineas.add(linea);
                 }   }
             
-                    if (encontrado) { //sobre escribir la info del array en el csv sin el usuario eliminado
+                    if (encontrado) { //sobre escribir la info del array en elcsv sin el usuario eliminado
                     try (BufferedWriter escritor = new BufferedWriter(new FileWriter(selectedFile))) {
                          for (int i =0; i< lineas.size(); i++){
                         String actuali= lineas.get(i);
@@ -134,22 +134,23 @@ public class Usuario {
             e.printStackTrace();
         }
         
-        Prueba.add(nombre);
-        Prueba.add(tamano);
-        Prueba.add(tipo);
-        Prueba.add(tiempoRegistrado);
-
+        try {
+        FileWriter writer = new FileWriter("documentoUsuario.csv", true);
+        BufferedWriter buffer = new BufferedWriter(writer);
         
-         System.out.println("Documento creado:");
-                System.out.println("Nombre: " + nombre);
-                System.out.println("Tamaño: " + tamano);
-                System.out.println("Tipo: " + tipo);
-                System.out.println("Tiempo: " + tiempoRegistrado);
-//                System.out.println("Tiempo: " + tiempo);
-    usuarioData.add(Prueba);    
-    VerArrayDoble(usuarioData);
-    System.out.println(usuarioData.size()); //Para ver el almacenamiento.
-    System.out.println(list);
-        return list;
+        
+        
+        buffer.write(nombre + "," + tamano + "," + tipo + "," + tiempoRegistrado);
+        buffer.newLine();
+        buffer.close();
+        System.out.println("Documento creado y guardado en documentoUsuario.csv");
+        
+       File archivoTiempo = new File("tiempo.txt");
+   
+    } catch (IOException e) {
+        System.out.println("Error al guardar el documento en el archivo");
+        e.printStackTrace();
+    }
+        return null;
     }
 }

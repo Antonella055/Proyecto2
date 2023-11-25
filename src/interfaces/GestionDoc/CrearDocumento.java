@@ -15,6 +15,7 @@ import static interfaces.GestionDoc.RegistroUsr.usuarioData;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -156,13 +157,15 @@ public class CrearDocumento extends javax.swing.JFrame {
         nombredoc= docnombre.getText();
          tamanodoc=doctamano.getText();
         tipodoc= doctipo.getText();
-        
-        Usuario user = new Usuario();
+           
+       Usuario user = new Usuario();
        user.cambiarImprimirTiempo(true);
-       
+     
         try {
             user.CrearDocumento(nombredoc, tamanodoc, tipodoc);
         } catch (FileNotFoundException ex) {
+            Logger.getLogger(CrearDocumento.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(CrearDocumento.class.getName()).log(Level.SEVERE, null, ex);
         }
         

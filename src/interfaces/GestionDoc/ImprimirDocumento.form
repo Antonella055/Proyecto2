@@ -141,10 +141,9 @@
         <Component class="javax.swing.JComboBox" name="prioridad">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="Seleccionar..."/>
-                <StringItem index="1" value="Prioritario"/>
-                <StringItem index="2" value="No prioritario"/>
+              <StringArray count="2">
+                <StringItem index="0" value="Prioritario"/>
+                <StringItem index="1" value="No prioritario"/>
               </StringArray>
             </Property>
           </Properties>

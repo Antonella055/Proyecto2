@@ -138,12 +138,11 @@ public class Usuario {
         FileWriter writer = new FileWriter(archivo, true);
         BufferedWriter buffer = new BufferedWriter(writer);
 
-        if (existeArchivo) {
-            buffer.newLine();
-        }
+      
         
         
         buffer.write(usuario + "," + nombre + "," + tamano + "," + tipo);
+        buffer.newLine();
         buffer.close();
         JOptionPane.showMessageDialog(null, "El documento " + nombre + " se ha creado correctamentre", "Crear Documento", JOptionPane.INFORMATION_MESSAGE);
     } catch (IOException e) {

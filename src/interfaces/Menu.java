@@ -10,6 +10,12 @@ import interfaces.GestionDoc.RegistroUsr;
 import interfaces.Usuario.Usuarios;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -173,6 +179,21 @@ public class Menu extends javax.swing.JFrame {
 
     private void SeleccionarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarArchivoActionPerformed
         // TODO add your handling code here:
+        
+        Path file = Paths.get("documentoCola.csv");
+        try {
+            Files.delete(file);
+        } catch (IOException ex) {
+            
+        }
+        
+        Path documento = Paths.get("documentoUsuario.csv");
+        try {
+            Files.delete(documento);
+        } catch (IOException ex) {
+            
+        }
+        
         
         
         

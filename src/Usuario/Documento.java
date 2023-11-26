@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -81,9 +82,10 @@ public class Documento {
                                             }}
                 } catch (IOException e) {
             System.out.println("Error al leer el archivo archivoDocumentos.csv");
-            e.printStackTrace();
         }}  
     }
+                    }catch (IOException e){
+                        JOptionPane.showMessageDialog(null, "No hay registros en cola", "Error", JOptionPane.ERROR_MESSAGE);
                     }
             }
         }return documentos;

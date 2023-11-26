@@ -91,7 +91,7 @@ public class ImprimirDocumento extends javax.swing.JFrame {
             }
         });
 
-        prioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "Prioritario", "No prioritario" }));
+        prioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Prioritario", "No prioritario" }));
         prioridad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 prioridadActionPerformed(evt);

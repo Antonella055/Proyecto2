@@ -81,7 +81,7 @@ public class CrearDocumento extends javax.swing.JFrame {
         getContentPane().add(docnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 100, 260, -1));
 
         doctamano.setForeground(new java.awt.Color(153, 153, 153));
-        doctamano.setText("60bytes...");
+        doctamano.setText("60bytes.");
         getContentPane().add(doctamano, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 144, 259, -1));
 
         jLabel3.setFont(new java.awt.Font("Mongolian Baiti", 1, 14)); // NOI18N
@@ -96,7 +96,7 @@ public class CrearDocumento extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 17, 37, -1));
 
         doctipo.setForeground(new java.awt.Color(153, 153, 153));
-        doctipo.setText("pdf,png...");
+        doctipo.setText("pdf");
         getContentPane().add(doctipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 188, 237, -1));
 
         jLabel6.setFont(new java.awt.Font("Eras Demi ITC", 0, 12)); // NOI18N

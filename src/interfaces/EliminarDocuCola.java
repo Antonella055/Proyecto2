@@ -140,7 +140,6 @@ public class EliminarDocuCola extends javax.swing.JFrame {
         // TODO add your handling code here:
         BuscarenCola buscador= new BuscarenCola();
         buscador.setVisible(true);
-        setVisible(false);
     }//GEN-LAST:event_buscarActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed

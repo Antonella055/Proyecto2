@@ -75,7 +75,7 @@ public class ModificarArchivo{
         BufferedReader br = new BufferedReader(new FileReader(file));
         
         while ((line = br.readLine()) != null) {
-            
+            if (line.contains(",")){
         if (line.split(",")[0].equals(nombre)) {
             br.close();
             return true;}
@@ -83,6 +83,7 @@ public class ModificarArchivo{
             br.close();
             return true;}
         }
+             }
         br.close();
         return false;
     }

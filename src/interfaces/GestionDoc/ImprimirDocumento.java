@@ -29,7 +29,7 @@ public class ImprimirDocumento extends javax.swing.JFrame {
     public ImprimirDocumento() {
         initComponents();
         
-        try (BufferedReader br = new BufferedReader(new FileReader("documentoUsuario.csv"))) {
+       try (BufferedReader br = new BufferedReader(new FileReader("documentoUsuario.csv"))) {
         String linea;
         while ((linea = br.readLine()) != null) {
             if (linea.split(",")[0].equals(UsuarioName)){

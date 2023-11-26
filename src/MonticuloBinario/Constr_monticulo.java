@@ -173,7 +173,7 @@ class Constr_monticulo {
                 System.out.print("L----");
                 indent += "|  ";
             }
-            System.out.println(currPtr.username + " (Priority: " + currPtr.prioridad + ")");
+            System.out.println(currPtr.username + " (Tiempo: " + currPtr.prioridad + ")");
             printMonticulo(currPtr.left, indent, false);
             printMonticulo(currPtr.right, indent, true);
         }

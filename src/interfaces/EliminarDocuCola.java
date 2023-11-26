@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package interfaces.GestionDoc;
+package interfaces;
 
 import static Estructuras.ModificarArchivo.InputEliminacionUser;
 import interfaces.Usuario.BuscarUsuario;
@@ -19,12 +19,12 @@ import javax.swing.JPanel;
  *
  * @author Antonella
  */
-public class EliminarDocumento extends javax.swing.JFrame {
+public class EliminarDocuCola extends javax.swing.JFrame {
 
     /**
      * Creates new form CrearDocumento
      */
-    public EliminarDocumento() {
+    public EliminarDocuCola() {
         initComponents();
     }
 
@@ -147,18 +147,18 @@ public class EliminarDocumento extends javax.swing.JFrame {
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         // TODO add your handling code here
         setVisible(false);
-        new Documentos().setVisible(true);
+        new ColaImpresion().setVisible(true);
     }//GEN-LAST:event_cancelarActionPerformed
 
     private void BotonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEliminarActionPerformed
         // TODO add your handling code here:
        String a = eliminar.getText();
        
-       File filedel = new File("documentoUsuario.csv"); 
+       File filedel = new File("documentoCola.csv"); 
         try {
             InputEliminacionUser(filedel, a);
         } catch (IOException ex) {
-            Logger.getLogger(EliminarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EliminarDocuCola.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_BotonEliminarActionPerformed
 
@@ -183,21 +183,23 @@ public class EliminarDocumento extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EliminarDocumento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarDocuCola.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EliminarDocumento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarDocuCola.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EliminarDocumento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarDocuCola.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EliminarDocumento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarDocuCola.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EliminarDocumento().setVisible(true);
+                new EliminarDocuCola().setVisible(true);
             }
         });
     }

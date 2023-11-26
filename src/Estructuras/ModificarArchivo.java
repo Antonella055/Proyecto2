@@ -87,7 +87,7 @@ public class ModificarArchivo{
        
     }
     
-       public static void InputEliminacionUser(File Archivo) throws IOException{
+       public static void InputEliminacionUser(File Archivo, String user) throws IOException{
            BufferedReader br = new BufferedReader(new FileReader(Archivo));
     String aLineFromFile = null;
     String Mensaje = null;
@@ -95,7 +95,7 @@ public class ModificarArchivo{
             Mensaje = Mensaje +"\n" + aLineFromFile; //Demostrar los elementos dentro del archivo
     }   
       br.close();
-                String user = (String)JOptionPane.showInputDialog( "Introduzca el usuario a eliminar" +"\n" + "" + Mensaje);
+               //   JOptionPane.showMessageDialog(null, Mensaje);
                 
                 if(validador(Archivo.toString(),user)){
                     EliminarUsuario(Archivo.toString(), user);
@@ -103,11 +103,5 @@ public class ModificarArchivo{
                             JOptionPane.showMessageDialog(null, "ERROR: El usuario no fue encontrado, por favor ingrese un usuario que exista", "Alerta", JOptionPane.ERROR_MESSAGE);
                 }
     }
-       
-     public static void BorrarArchivo() {
-     File filedel = new File("documentoUsuario.csv"); 
-     filedel.delete();
-
-     }
     
 }

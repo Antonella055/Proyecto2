@@ -163,6 +163,7 @@ public class CrearDocumento extends javax.swing.JFrame {
        
         try {
             user.CrearDocumento(UsuarioName,nombredoc, tamanodoc, tipodoc);
+           
         } catch (FileNotFoundException ex) {
             Logger.getLogger(CrearDocumento.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

@@ -152,6 +152,11 @@ public class BuscarUsuario extends javax.swing.JFrame {
 
         documentotxt.setEditable(false);
         documentotxt.setEnabled(false);
+        documentotxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                documentotxtActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Nombre:");
 
@@ -235,6 +240,10 @@ public class BuscarUsuario extends javax.swing.JFrame {
     private void prioridadtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prioridadtxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_prioridadtxtActionPerformed
+
+    private void documentotxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_documentotxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_documentotxtActionPerformed
 
     /**
      * @param args the command line arguments

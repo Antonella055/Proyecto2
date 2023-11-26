@@ -25,6 +25,17 @@ public class EliminarUsuario extends javax.swing.JFrame {
      */
     public EliminarUsuario() {
         initComponents();
+        
+        
+    }
+    
+    public String getNombre(String nombre){
+        return nombre;
+    }
+    
+    public void setNombreUsuario(String nombreUsuario) {
+        // Establecer el valor del nombre de usuario en el JTextField
+        usuario.setText(nombreUsuario);
     }
 
     /**
@@ -130,9 +141,7 @@ public class EliminarUsuario extends javax.swing.JFrame {
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
         BuscarUsuario buscador= new BuscarUsuario();
-        buscador.mostrarselecc();
         buscador.setVisible(true);
-        setVisible(false);
     }//GEN-LAST:event_buscarActionPerformed
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed

@@ -2,19 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package interfaces.GestionDoc;
+package interfaces;
 
 import static Estructuras.ModificarArchivo.InputEliminacionUser;
-import static interfaces.GestionDoc.RegistroUsr.UsuarioName;
 import interfaces.Usuario.BuscarUsuario;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -22,27 +19,13 @@ import javax.swing.JPanel;
  *
  * @author Antonella
  */
-public class EliminarDocumento extends javax.swing.JFrame {
+public class EliminarDocuCola extends javax.swing.JFrame {
 
     /**
      * Creates new form CrearDocumento
      */
-    public EliminarDocumento() {
+    public EliminarDocuCola() {
         initComponents();
-        
-        try (BufferedReader br = new BufferedReader(new FileReader("documentoUsuario.csv"))) {
-        String linea;
-        while ((linea = br.readLine()) != null) {
-            if (linea.split(",")[0].equals(UsuarioName)){
-            String[] datos = linea.split(",");
-            // Agregar los datos al combo box
-            documento.addItem(datos[1]);}
-        }
-    } catch (IOException e) {
-        System.out.println("Error al leer el archivo CSV");
-        e.printStackTrace();
-    }
-    
     }
 
     /**
@@ -56,15 +39,15 @@ public class EliminarDocumento extends javax.swing.JFrame {
 
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        eliminar = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        BotonEliminar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new Fondo();
-        documento = new javax.swing.JComboBox<>();
 
         jButton3.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Yellow"));
         jButton3.setForeground(new java.awt.Color(204, 153, 0));
@@ -83,17 +66,24 @@ public class EliminarDocumento extends javax.swing.JFrame {
         jLabel1.setText("Nombre:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 140, -1, -1));
 
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 133, 260, -1));
+
         jLabel3.setFont(new java.awt.Font("Mongolian Baiti", 1, 14)); // NOI18N
         jLabel3.setText("Para eliminar un documento dentro de su Informacion, Por favor ");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 75, 458, -1));
 
-        jButton1.setText("Eliminar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BotonEliminar.setText("Eliminar");
+        BotonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BotonEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 181, -1, -1));
+        getContentPane().add(BotonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 181, -1, -1));
 
         cancelar.setText("Cancelar");
         cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -125,23 +115,15 @@ public class EliminarDocumento extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/papelera.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 32, 31, -1));
 
-        documento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar..." }));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(documento, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(121, Short.MAX_VALUE))
+            .addGap(0, 490, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(135, Short.MAX_VALUE)
-                .addComponent(documento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59))
+            .addGap(0, 220, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 220));
@@ -156,30 +138,32 @@ public class EliminarDocumento extends javax.swing.JFrame {
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
-        BuscarDocumento buscador= new BuscarDocumento();
+        BuscarenCola buscador= new BuscarenCola();
         buscador.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_buscarActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         // TODO add your handling code here
         setVisible(false);
-        new Documentos().setVisible(true);
+        new ColaImpresion().setVisible(true);
     }//GEN-LAST:event_cancelarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BotonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEliminarActionPerformed
         // TODO add your handling code here:
-        
-       documento.getSelectedItem();
-        String a = (String) documento.getSelectedItem();
+       String a = eliminar.getText();
        
-       File filedel = new File("documentoUsuario.csv"); 
-        
+       File filedel = new File("documentoCola.csv"); 
         try {
             InputEliminacionUser(filedel, a);
         } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(EliminarDocumento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(EliminarDocuCola.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BotonEliminarActionPerformed
+
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,30 +182,32 @@ public class EliminarDocumento extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EliminarDocumento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarDocuCola.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EliminarDocumento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarDocuCola.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EliminarDocumento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarDocuCola.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EliminarDocumento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarDocuCola.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EliminarDocumento().setVisible(true);
+                new EliminarDocuCola().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonEliminar;
     private javax.swing.JButton buscar;
     private javax.swing.JButton cancelar;
-    private javax.swing.JComboBox<String> documento;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField eliminar;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

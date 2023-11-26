@@ -145,7 +145,6 @@ public class AgregarUsuario extends javax.swing.JFrame {
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
         BuscarUsuario buscador= new BuscarUsuario();
-        buscador.mostrarselecc();
         buscador.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_buscarActionPerformed

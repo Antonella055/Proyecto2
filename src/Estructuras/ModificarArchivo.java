@@ -47,7 +47,7 @@ public class ModificarArchivo{
           pw.flush();
         }
       }
-      JOptionPane.showMessageDialog(null, "El Usuario fue eliminado existosamente", "Operación existosa", JOptionPane.INFORMATION_MESSAGE);
+      JOptionPane.showMessageDialog(null, "El documento fue eliminado existosamente", "Operación existosa", JOptionPane.INFORMATION_MESSAGE);
 
       pw.close();
       br.close();
@@ -78,16 +78,16 @@ public class ModificarArchivo{
             
         if (line.split(",")[0].equals(nombre)) {
             br.close();
-            return true;
-            
+            return true;}
+      if (line.split(",")[1].equals(nombre)) {
+            br.close();
+            return true;}
         }
-      }
         br.close();
         return false;
-       
     }
     
-       public static void InputEliminacionUser(File Archivo) throws IOException{
+       public static void InputEliminacionUser(File Archivo, String user) throws IOException{
            BufferedReader br = new BufferedReader(new FileReader(Archivo));
     String aLineFromFile = null;
     String Mensaje = null;
@@ -95,12 +95,12 @@ public class ModificarArchivo{
             Mensaje = Mensaje +"\n" + aLineFromFile; //Demostrar los elementos dentro del archivo
     }   
       br.close();
-                String user = (String)JOptionPane.showInputDialog( "Introduzca el usuario a eliminar" +"\n" + "" + Mensaje);
+               //   JOptionPane.showMessageDialog(null, Mensaje);
                 
                 if(validador(Archivo.toString(),user)){
                     EliminarUsuario(Archivo.toString(), user);
                 }else{
-                            JOptionPane.showMessageDialog(null, "ERROR: El usuario no fue encontrado, por favor ingrese un usuario que exista", "Alerta", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "ERROR:  No se encontro este elemento registrado", "Alerta", JOptionPane.ERROR_MESSAGE);
                 }
     }
     

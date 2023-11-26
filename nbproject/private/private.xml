@@ -3,9 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/MonticuloBinario/Usuario.java</file>
+            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/Estructuras/ModificarArchivo.java</file>
+            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/MonticuloBinario/Monticulo.java</file>
+            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/interfaces/GestionDoc/RegistroUsr.java</file>
+            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/interfaces/Menu.java</file>
+            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/interfaces/GestionDoc/CrearDocumento.java</file>
+            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/interfaces/GestionDoc/BuscarDocumento.java</file>
+            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/interfaces/GestionDoc/Documentos.java</file>
+            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/Usuario/Documento.java</file>
             <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/MonticuloBinario/Constructor.java</file>
-            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/MonticuloBinario/Nodo.java</file>
+            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/interfaces/Usuario/EliminarUsuario.java</file>
+            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/interfaces/Usuario/BuscarUsuario.java</file>
+            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/interfaces/RegistroCola.java</file>
+            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/interfaces/BuscarenCola.java</file>
+            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/interfaces/Usuario/Usuarios.java</file>
+            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/MonticuloBinario/Constr_monticulo.java</file>
+            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/Usuario/Usuario.java</file>
+            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/interfaces/EliminarDocuCola.java</file>
+            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/interfaces/GestionDoc/ImprimirDocumento.java</file>
+            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/Estructuras/Iterator.java</file>
+            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/interfaces/Usuario/AgregarUsuario.java</file>
+            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/interfaces/ColaImpresion.java</file>
+            <file>file:/C:/Users/Antonella/OneDrive/Escritorio/Proyecto%20Github/Proyecto2git/src/Usuario/Registro.java</file>
         </group>
     </open-files>
 </project-private>

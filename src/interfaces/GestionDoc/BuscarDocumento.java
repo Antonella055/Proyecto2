@@ -2,41 +2,41 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package interfaces.Usuario;
+package interfaces.GestionDoc;
 
+import interfaces.Usuario.*;
 import static MonticuloBinario.Monticulo.selectedFile;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import javax.swing.DefaultCellEditor;
+
 import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellEditor;
-import javax.swing.table.TableColumn;
+
 
 /**
  *
  * @author Antonella
  */
-public class BuscarUsuario extends javax.swing.JFrame {
+public class BuscarDocumento extends javax.swing.JFrame {
     private String usuario;
     
     /**
      * Creates new form BuscarUsuario
      */
     
-    public BuscarUsuario() {
+    public BuscarDocumento() {
         initComponents();
   
         
         
           DefaultTableModel model = (DefaultTableModel) Tblist.getModel();
-          try (BufferedReader br = new BufferedReader(new FileReader(selectedFile))) {
+          try (BufferedReader br = new BufferedReader(new FileReader("documentoUsuario.csv"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
@@ -57,7 +57,6 @@ public class BuscarUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -65,16 +64,19 @@ public class BuscarUsuario extends javax.swing.JFrame {
         Tblist = new javax.swing.JTable();
         Fondo = new Fondo();
         usuariotxt = new javax.swing.JTextField();
+        documentotxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        prioridadtxt = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
         volver = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        tipotxt = new javax.swing.JTextField();
+        tamanotxt = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("BankGothic Md BT", 1, 18)); // NOI18N
-        jLabel1.setText("Registro de Usuarios");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(504, 29, 241, -1));
 
         jInternalFrame1.setVisible(true);
 
@@ -96,11 +98,11 @@ public class BuscarUsuario extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Usuario", "Tipo"
+                "Usuario", "Documento", "tipo", "tamano"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -115,6 +117,10 @@ public class BuscarUsuario extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(Tblist);
         Tblist.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        if (Tblist.getColumnModel().getColumnCount() > 0) {
+            Tblist.getColumnModel().getColumn(0).setResizable(false);
+            Tblist.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
@@ -142,14 +148,12 @@ public class BuscarUsuario extends javax.swing.JFrame {
             }
         });
 
+        documentotxt.setEditable(false);
+        documentotxt.setEnabled(false);
+
         jLabel2.setText("Nombre:");
 
-        prioridadtxt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Prioridad alta", "Prioridad media", "Prioridad baja" }));
-        prioridadtxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prioridadtxtActionPerformed(evt);
-            }
-        });
+        jLabel3.setText("Documento:");
 
         volver.setText("Volver");
         volver.addActionListener(new java.awt.event.ActionListener() {
@@ -158,34 +162,77 @@ public class BuscarUsuario extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("BankGothic Md BT", 1, 18)); // NOI18N
+        jLabel1.setText("Documentos");
+
+        jLabel4.setText("tipo:");
+
+        tipotxt.setEditable(false);
+        tipotxt.setEnabled(false);
+
+        tamanotxt.setEditable(false);
+        tamanotxt.setEnabled(false);
+
+        jLabel5.setText("Tamano:");
+
+        jLabel6.setFont(new java.awt.Font("BankGothic Md BT", 1, 18)); // NOI18N
+        jLabel6.setText("Registrados");
+
         javax.swing.GroupLayout FondoLayout = new javax.swing.GroupLayout(Fondo);
         Fondo.setLayout(FondoLayout);
         FondoLayout.setHorizontalGroup(
             FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FondoLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(prioridadtxt, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(FondoLayout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
-                        .addComponent(usuariotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(76, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(volver)
                 .addGap(60, 60, 60))
+            .addGroup(FondoLayout.createSequentialGroup()
+                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FondoLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(usuariotxt, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                            .addComponent(documentotxt)
+                            .addComponent(tipotxt)
+                            .addComponent(tamanotxt)))
+                    .addGroup(FondoLayout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(FondoLayout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         FondoLayout.setVerticalGroup(
             FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FondoLayout.createSequentialGroup()
-                .addGap(137, 137, 137)
+                .addGap(35, 35, 35)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addGap(44, 44, 44)
                 .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usuariotxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(prioridadtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
+                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(documentotxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tipotxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tamanotxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(volver)
                 .addGap(26, 26, 26))
         );
@@ -198,7 +245,6 @@ public class BuscarUsuario extends javax.swing.JFrame {
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
         // TODO add your handling code here:
           setVisible(false);
-        new Usuarios().setVisible(true);
     }//GEN-LAST:event_volverActionPerformed
 
     private void TblistMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblistMousePressed
@@ -208,17 +254,15 @@ public class BuscarUsuario extends javax.swing.JFrame {
         
         try{
             this.usuariotxt.setText(Tblist.getValueAt(filaseleccionada,0).toString());
-           usuario=Tblist.getValueAt(filaseleccionada,0).toString();
-             this.prioridadtxt.setSelectedItem(Tblist.getValueAt(filaseleccionada,1).toString());
+             this.documentotxt.setText(Tblist.getValueAt(filaseleccionada,1).toString());
+                 this.tipotxt.setText(Tblist.getValueAt(filaseleccionada,2).toString());
+                     this.tamanotxt.setText(Tblist.getValueAt(filaseleccionada,3).toString());
+             
         }catch (Exception e){
             JOptionPane.showMessageDialog(null,"Error al leer la tabla","Error",JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_TblistMousePressed
-
-    private void prioridadtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prioridadtxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prioridadtxtActionPerformed
 
     private void usuariotxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuariotxtActionPerformed
         // TODO add your handling code here:
@@ -241,20 +285,21 @@ public class BuscarUsuario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuscarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuscarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuscarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuscarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BuscarUsuario().setVisible(true);
+                new BuscarDocumento().setVisible(true);
             }
         });
     }
@@ -262,13 +307,19 @@ public class BuscarUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Fondo;
     private javax.swing.JTable Tblist;
+    private javax.swing.JTextField documentotxt;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable2;
-    private javax.swing.JComboBox<String> prioridadtxt;
+    private javax.swing.JTextField tamanotxt;
+    private javax.swing.JTextField tipotxt;
     private javax.swing.JTextField usuariotxt;
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables

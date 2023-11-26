@@ -5,8 +5,12 @@
 package interfaces;
 
 import static MonticuloBinario.Monticulo.ColaAmonticulo;
+import static MonticuloBinario.Monticulo.Mostrar;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -32,26 +36,32 @@ public class ColaImpresion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        VerArbol1 = new javax.swing.JButton();
         VerArbol = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         Volver = new javax.swing.JButton();
         Fondo = new Fondo();
+        Grafico = new javax.swing.JButton();
+        VerArbol2 = new javax.swing.JButton();
+
+        VerArbol1.setBackground(new java.awt.Color(204, 255, 255));
+        VerArbol1.setForeground(new java.awt.Color(51, 51, 51));
+        VerArbol1.setText("Ver Arbol");
+        VerArbol1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        VerArbol1.setBorderPainted(false);
+        VerArbol1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerArbol1ActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(204, 255, 255));
-        jButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jButton1.setText("Registros de la cola");
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.setBorderPainted(false);
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 192, 156, 38));
-
         VerArbol.setBackground(new java.awt.Color(204, 255, 255));
         VerArbol.setForeground(new java.awt.Color(51, 51, 51));
-        VerArbol.setText("Ver Arbol");
+        VerArbol.setText("Registros de la cola ");
         VerArbol.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         VerArbol.setBorderPainted(false);
         VerArbol.addActionListener(new java.awt.event.ActionListener() {
@@ -78,15 +88,49 @@ public class ColaImpresion extends javax.swing.JFrame {
         });
         getContentPane().add(Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        Grafico.setBackground(new java.awt.Color(204, 255, 255));
+        Grafico.setForeground(new java.awt.Color(51, 51, 51));
+        Grafico.setText("Ver Monticulo");
+        Grafico.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Grafico.setBorderPainted(false);
+        Grafico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GraficoActionPerformed(evt);
+            }
+        });
+
+        VerArbol2.setBackground(new java.awt.Color(255, 255, 204));
+        VerArbol2.setForeground(new java.awt.Color(51, 51, 51));
+        VerArbol2.setText("Eliminar Documento en cola");
+        VerArbol2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        VerArbol2.setBorderPainted(false);
+        VerArbol2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerArbol2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout FondoLayout = new javax.swing.GroupLayout(Fondo);
         Fondo.setLayout(FondoLayout);
         FondoLayout.setHorizontalGroup(
             FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoLayout.createSequentialGroup()
+                .addContainerGap(210, Short.MAX_VALUE)
+                .addComponent(Grafico, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74))
+            .addGroup(FondoLayout.createSequentialGroup()
+                .addGap(127, 127, 127)
+                .addComponent(VerArbol2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         FondoLayout.setVerticalGroup(
             FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoLayout.createSequentialGroup()
+                .addContainerGap(192, Short.MAX_VALUE)
+                .addComponent(Grafico, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(VerArbol2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
 
         getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 330));
@@ -98,13 +142,33 @@ public class ColaImpresion extends javax.swing.JFrame {
     private void VerArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerArbolActionPerformed
         // TODO add your handling code here:
         ColaAmonticulo();
+        new RegistroCola().setVisible(true);
     }//GEN-LAST:event_VerArbolActionPerformed
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        new Menu().setVisible(true);
     }//GEN-LAST:event_VolverActionPerformed
+
+    private void GraficoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GraficoActionPerformed
+        try {
+            // TODO add your handling code here:
+            Mostrar();
+        } catch (IOException ex) {
+            Logger.getLogger(ColaImpresion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_GraficoActionPerformed
+
+    private void VerArbol1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerArbol1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VerArbol1ActionPerformed
+
+    private void VerArbol2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerArbol2ActionPerformed
+        // TODO add your handling code here:
+        
+        new EliminarDocuCola().setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_VerArbol2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,9 +207,11 @@ public class ColaImpresion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Fondo;
+    private javax.swing.JButton Grafico;
     private javax.swing.JButton VerArbol;
+    private javax.swing.JButton VerArbol1;
+    private javax.swing.JButton VerArbol2;
     private javax.swing.JButton Volver;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

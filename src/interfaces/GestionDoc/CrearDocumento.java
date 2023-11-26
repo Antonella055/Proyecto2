@@ -5,14 +5,11 @@
 package interfaces.GestionDoc;
 
 import Estructuras.ArrayList;
-import static Estructuras.ArrayList.VerElemenEspecifico;
-import Usuario.Documento;
-import Usuario.Usuario;
-import interfaces.CronometroInter;
 
-import static Estructuras.ArrayList.VerArrayDoble;
+import Usuario.Usuario;
+
 import static interfaces.GestionDoc.RegistroUsr.UsuarioName;
-import static interfaces.GestionDoc.RegistroUsr.usuarioData;
+
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.FileNotFoundException;

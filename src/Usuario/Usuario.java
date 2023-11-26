@@ -5,20 +5,17 @@
 package Usuario;
 
 import Estructuras.ArrayList;
-import static Estructuras.ArrayList.VerArrayDoble;
 import static MonticuloBinario.Monticulo.selectedFile;
-import static interfaces.GestionDoc.RegistroUsr.usuarioData;
+
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -133,20 +130,22 @@ public class Usuario {
     }
 
     public void CrearDocumento(String usuario,String nombre,String tamano,String tipo) throws FileNotFoundException {
-        ArrayList<String>  Prueba = new ArrayList<>(new Object[0], 0);
-        ArrayList<Object> list = new ArrayList<>(new Object[0], 0);
-        
+  
         try {
-        FileWriter writer = new FileWriter("documentoUsuario.csv", true);
+        File archivo = new File("documentoUsuario.csv");
+        boolean existeArchivo = archivo.exists();
+
+        FileWriter writer = new FileWriter(archivo, true);
         BufferedWriter buffer = new BufferedWriter(writer);
+
+        if (existeArchivo) {
+            buffer.newLine();
+        }
         
-        buffer.write(usuario+","+nombre + "," + tamano + "," + tipo);
-        buffer.newLine();
+        
+        buffer.write(usuario + "," + nombre + "," + tamano + "," + tipo);
         buffer.close();
         JOptionPane.showMessageDialog(null, "El documento " + nombre + " se ha creado correctamentre", "Crear Documento", JOptionPane.INFORMATION_MESSAGE);
-        
-       
-   
     } catch (IOException e) {
         System.out.println("Error al guardar el documento en el archivo");
         e.printStackTrace();
@@ -154,17 +153,15 @@ public class Usuario {
         
     }
      public void CrearDocumentoCola(String usuario,String prioridad) throws FileNotFoundException {
-        ArrayList<String>  Prueba = new ArrayList<>(new Object[0], 0);
-        ArrayList<Object> list = new ArrayList<>(new Object[0], 0);
-        
+    
         try {
-        FileWriter writer = new FileWriter("documentoCola.csv", true);
+        FileWriter writer = new FileWriter("documentoCola.csv",true);
         BufferedWriter buffer = new BufferedWriter(writer);
         
         buffer.write(usuario+","+prioridad+","+obtenerTiempo());
         buffer.newLine();
         buffer.close();
-        System.out.println("Documento creado y guardado en documentoCola.csv");
+         JOptionPane.showMessageDialog(null,"Documento enviado a la cola de Impresion","Informacion documento",JOptionPane.INFORMATION_MESSAGE);
         
        
    

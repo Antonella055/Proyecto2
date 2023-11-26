@@ -4,6 +4,17 @@
  */
 package MonticuloBinario;
 
+import Estructuras.MyHashMap;
+import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;
+import com.mxgraph.layout.mxGraphLayout;
+
+import com.mxgraph.swing.mxGraphComponent;
+import com.mxgraph.view.mxGraph;
+import interfaces.Arbol;
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 
 /**
  *
@@ -11,6 +22,7 @@ package MonticuloBinario;
  */
 class Constr_monticulo {
     Constructor raiz;
+    
 
     int nivel(Constructor N) {
         if (N == null) {
@@ -88,6 +100,7 @@ class Constr_monticulo {
                     return rotarIzquierdo(nodo);
                 }
             }
+            
             return nodo;
         }
     }
@@ -179,5 +192,96 @@ class Constr_monticulo {
         }
     }
 
+    public void MostrarMonticuloConstructor(mxGraph graph, Object parent, Constructor currPtr,Object parentVertex){
+        if (currPtr != null){
+                 Object vertice = graph.insertVertex(parent, null, currPtr.username , 0, 0, 80, 30);
+                  Object rightVertex = null;
+         if (parentVertex != null) {
+             graph.insertEdge(parent, null," ", parentVertex, vertice);
+         }
+                 
+                 
+            if(currPtr.left != null){
+                MostrarMonticuloConstructor(graph, parent, currPtr.left,vertice);
+        }
+            
+            if (currPtr.right != null){
+                MostrarMonticuloConstructor(graph, parent, currPtr.right,vertice);
+            }
+            
+              if (parentVertex == null  ) {
+            // Si es la raíz y no tiene hijos, no se crean vértices adicionales
+            return;
+            }else if (currPtr.right == null  ) {
+              // Si es la raíz y no tiene hijos, no se crean vértices adicionales
+              return;
+
+            }else if(currPtr.left == null  ) {
+                // Si es la raíz y no tiene hijos, no se crean vértices adicionales
+                return;
+            }
+              if (parentVertex == null || currPtr.left == null || currPtr.right == null) {
+            eliminarVerticeNulo(graph, vertice);
+        
+            System.out.println("parentVertex: " + parentVertex);
+            System.out.println("currPtr.left: " + currPtr.left);
+            System.out.println("currPtr.right: " + currPtr.right);
+            
+            
+            if (currPtr.left != null) {
+            Object leftVertex = graph.insertVertex(parent, null, "", 0, 0, 0, 0);
+            graph.insertEdge(parent, null, "", vertice, leftVertex);
+            }else if (currPtr.right != null) {
+                rightVertex = graph.insertVertex(parent, null, "", 0, 0, 0, 0);
+                graph.insertEdge(parent, null, "", vertice, rightVertex);
+
+            } 
+        }
+        }
+      
+    
+    }
+    
+    public void eliminarVerticeNulo(mxGraph graph, Object vertex) {
+    if (vertex != null) {
+        Object[] cellsToRemove = { vertex };
+        graph.removeCells(cellsToRemove);
+    }
+}
+    
+    
+    public void DisplayMonticulo(Constructor currPtr){
+        mxGraph graph = new mxGraph();
+        Object parent = graph.getDefaultParent();
+
+        graph.getModel().beginUpdate();
+        
+        try{ 
+            MostrarMonticuloConstructor(graph,parent,currPtr,null);
+            
+        }finally{
+            graph.getModel().endUpdate();
+        }
+        
+         Arbol frame = new Arbol();
+        JPanel Panel= frame.getPanel();
+        
+        
+       mxGraphLayout layout = new mxHierarchicalLayout(graph);
+        layout.execute(parent);
+        Panel.setLayout(new BorderLayout());
+        
+        mxGraphComponent graphComponent = new mxGraphComponent(graph);
+        graphComponent.setConnectable(false);
+
+        Panel.add(graphComponent);
+        Panel.revalidate();
+        Panel.repaint();
+        frame.pack();
+        frame.setVisible(true);
+        Panel.setVisible(true);
+        
+      
+    }
     
 }

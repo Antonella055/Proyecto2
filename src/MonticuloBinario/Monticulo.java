@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
@@ -46,7 +47,27 @@ public class Monticulo { //Abrir archivo y usar sus datos para la creacion del M
             }
 
     }
+    public static void Mostrar() throws IOException{
+         Documento documento = new Documento( "", 0); // Create a Documento object
 
+            try {
+                 ArrayList<Documento> documentos = documento.ValidarDoc_Usuario(documento);
+                Constr_monticulo tree = new Constr_monticulo();
+                for (int i =0; i< documentos.size(); i++){
+                        Documento doc= documentos.get(i);
+                        String nombreDocumento = doc.getNombreDocumento();
+                         int tiempoAlterado = doc.getTiempoAlterado(); 
+                         tree.raiz = tree.insertar(tree.raiz, nombreDocumento, tiempoAlterado);
+                }
+                  
+                  tree.DisplayMonticulo(tree.raiz);
+    }    catch (FileNotFoundException e) {
+                System.out.println("Archivo no encontrado.");
+                e.printStackTrace();
+            } 
+    }
+
+    
     
      public void abrirArchivo(){
         JFileChooser fileChooser = new JFileChooser(); //JFileChooser ->abrir un cuadro de diálogo donde el usuario puede elegir un fichero a través del explorador de archivos de su equipo.

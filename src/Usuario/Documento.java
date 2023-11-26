@@ -58,8 +58,7 @@ public class Documento {
                     while ((lineaDocumento = brDocumentos.readLine()) != null) {
                         String[] datosDocumento = lineaDocumento.split(",");
                         String usuarioDocumento = datosDocumento[0];
-                        String nombreDocumento = datosDocumento[1];
-                        String tamanoDocumento = datosDocumento[2];
+                        String nombreDoc = datosDocumento[1];
                         String tipoDocumento = datosDocumento[3];
                         
                          //validacion de coincidencia con los datos
@@ -72,11 +71,11 @@ public class Documento {
                                             String prioridadImpresion=datosDoc[1];
                                             String tiempoImpresion=datosDoc[2];
                                             
-                                            if (nombreDocumento.equals(nombreImpresion)){
+                                            if (nombreDoc.equals(nombreImpresion)){
                                                  
                                                 AlterarEtiqueta(prioridad,prioridadImpresion,tiempoImpresion);
-                                                documento.setNombreDocumento(nombreDocumento);
-                                                Documento doc= new Documento(nombreDocumento, getTiempoAlterado());
+                                                documento.setNombreDocumento(nombreDoc);
+                                                Documento doc= new Documento(nombreDoc+"."+tipoDocumento, getTiempoAlterado());
                                                 documentos.add(doc);
                                             
                                             }}
@@ -103,7 +102,7 @@ public class Documento {
                             restarTiempo(tiempoImpresion,10);
                             break;
                         case "prioridad_alta": 
-                            restarTiempo(tiempoImpresion,20);
+                            restarTiempo(tiempoImpresion,15);
                             break;
               }
               break;
